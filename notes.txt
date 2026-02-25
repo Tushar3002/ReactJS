@@ -1,0 +1,111 @@
+When you have Node.js installed, you can start creating a React application by choosing a build tool.
+
+We will use the Vite build tool
+npm install -g create-vite //not used
+
+Run this command to create a React application named my-react-app:
+
+
+//main
+npm create vite@latest my-react-app -- --template react
+
+Install Dependencies
+As the result above suggests, navigate to your new react application directory:
+
+cd my-react-app
+And run this command to install dependencies:
+
+npm install
+
+npm run dev
+
+
+Here are two examples. The first uses JSX and the second does not:
+
+Example 1Get your own React.js Server
+JSX:
+
+main.jsx
+const myElement = <h1>I Love JSX!</h1>;
+
+createRoot(document.getElementById('root')).render(
+  myElement
+);
+
+Example 2
+Without JSX:
+
+main.jsx
+const myElement = React.createElement('h1', {}, 'I do not use JSX!');
+
+createRoot(document.getElementById('root')).render(
+  myElement
+);
+
+
+You can insert any valid JavaScript expression inside JSX by wrapping it in curly braces { }.
+function Car() {
+  return (
+    <>
+      <h1>My car</h1>
+      <p>It has {218 * 1.36} horsepower</p>
+    </>
+  );
+}
+
+Use a variable inside JSX:
+
+function Car() {
+  const hp = 218 * 1.36;
+  return (
+    <>
+      <h1>My car</h1>
+      <p>It has {hp} horsepower</p>
+    </>
+  );
+}
+
+Use a function inside JSX:
+
+function kwtohp(kw) {
+  return kw * 1.36;
+}
+
+function Car() {
+  return (
+    <>
+      <h1>My car</h1>
+      <p>It has {kwtohp(218)} horsepower</p>
+    </>
+  );
+}
+Object Properties
+Access object properties within JSX:
+
+Example
+Refer to an object property inside JSX:
+
+function Car() {
+  const myobj = {
+    name: "Fiat",
+    model: "500",
+    color: "white"
+  };
+  return (
+    <>
+      <h1>My car is a {myobj.color} {myobj.name} {myobj.model}</h1>
+    </>
+  );
+}
+
+App.jsx is an Component so always capital because HTML tags also use <html>
+ so to differentiate it always use capital <App />
+
+
+
+
+
+
+
+
+strictMode
