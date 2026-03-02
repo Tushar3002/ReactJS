@@ -1,5 +1,5 @@
 .header {
-    background-color: aquamarine;
+    background-color: darkgray;
     display: flex;
     justify-content: space-between; 
     align-items: center;
@@ -17,7 +17,10 @@
 .link {
     text-decoration: none;
     color: black;
+
 }
+
+
 
 
 body{
@@ -30,3 +33,12 @@ body{
     
 }
 
+.college{
+    text-align: center;
+}
+
+.college .link {
+    text-decoration: none;
+    color: black;
+    margin: 10px;
+}

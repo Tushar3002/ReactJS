@@ -11,7 +11,10 @@ function Navbar() {
     <div>
         <ul>
             <li><Link className='link' to='/'>Home</Link></li>
-            <li><Link className='link' to='/about'>About</Link></li>
+            <li><Link className='link' to='/user/about'>About</Link></li>
+            <li><Link className='link' to='/college'>College</Link></li>
+            <li><Link className='link' to='/student'>Student List</Link></li>
+            
         </ul>
     </div>
     </div>
