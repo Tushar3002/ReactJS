@@ -7,8 +7,8 @@ function Counter() {
     <div>
         <h1>{count}</h1>
         <h1>{rcount}</h1>
-        <button onClick={()=>setCount(count+1)}>Count</button>
-        <button onClick={()=>setRCount(rcount-1)}>RCount</button>
+        <button onClick={()=>setCount(prev=>prev+1)}>Count</button>
+        <button onClick={()=>setRCount(prev=>prev-1)}>RCount</button>
     </div>
     
   )

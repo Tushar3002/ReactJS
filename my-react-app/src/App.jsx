@@ -43,20 +43,22 @@ function App() {
 
         <Counter/>
         <Toggle/> */}
-
+        {/* Props are passed */}
         <User obj={obj} college={"MU"}/>
         <User obj={obj2} />
         <User obj={obj3} college={"FU"}/>
 
+
+          {/* //CHILDREn is used */}
         <div>
             <Wrapper>
               <h1>Hello EveryOne</h1>
             </Wrapper>
-            <Wrapper color='red'>
+            <Wrapper color='red' borderColor='blue'>
               <h1>Hello EveryOne</h1>
             </Wrapper>
-            <Wrapper>
-              <h1 style={{color:"yellow"}}>Hello EveryOne</h1>
+            <Wrapper borderColor='darkgreen' >
+              <h1  style={{color:"lime"}} >Hello EveryOne</h1>
             </Wrapper>
         </div>
 
