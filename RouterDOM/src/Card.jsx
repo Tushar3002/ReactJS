@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 function Card({ movie }) {
   return (
@@ -14,6 +15,9 @@ function Card({ movie }) {
           <h3>{movie.Title}</h3>
           <p>Year: {movie.Year}</p>
         </div>
+        <NavLink to={`/movie/${movie.imdbID}`}>
+            <button>Watch</button>
+        </NavLink>
       </div>
     </li>
   )
