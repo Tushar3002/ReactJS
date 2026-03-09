@@ -1,0 +1,73 @@
+.posts-container{
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+.posts-title{
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.posts-grid{
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+
+.post-card{
+  background: cadetblue;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.post-card:hover{
+  transform: translateY(-5px);
+}
+
+.post-title{
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.post-body{
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.btn-group{
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn{
+  background: #3498db;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-btn{
+  background: #e74c3c;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-btn:hover{
+  background: #2980b9;
+}
+
+.delete-btn:hover{
+  background: #c0392b;
+}
+
