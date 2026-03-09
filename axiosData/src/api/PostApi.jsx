@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useLayoutEffect } from "react";
 
 
 const api=axios.create({
@@ -16,3 +17,9 @@ export const deletePost=(id)=>{
 export const addPost=(post)=>{
     return api.post('/posts',post)
 }
+
+export const updatePost=(id,post)=>{
+    return api.put(`/posts/${id}`,post)
+}
+
+
