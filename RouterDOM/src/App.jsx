@@ -10,6 +10,8 @@ import About from "./About";
 import AppLayout from "./AppLayout";
 import Contact from "./Contact";
 import { ErrorPage } from "./ErrorPage";
+import Movie from "./Movie";
+import { getMoviesData } from "./api/GetAPIData";
 
 function App() {
   const router = createBrowserRouter([
@@ -25,6 +27,11 @@ function App() {
         {
           path: "/about",
           element: <About />,
+        },
+        {
+          path:'/movie',
+          element:<Movie/>,
+          loader:getMoviesData,
         },
         {
           path:'/contact',
