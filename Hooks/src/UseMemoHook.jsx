@@ -12,7 +12,7 @@ function UseMemoHook() {
   return (
     <div>
       <h2>{doubleNumber}</h2>
-
+      {count}
       <button onClick={() => setCount(count + 1)}>
         Increase
       </button>

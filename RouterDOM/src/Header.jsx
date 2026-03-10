@@ -23,8 +23,8 @@ function Header() {
               About
             </Nav.Link>
 
-            <Nav.Link as={NavLink} to="/services">
-              Services
+            <Nav.Link as={NavLink} to="/movie">
+              Movie
             </Nav.Link>
 
             <Nav.Link as={NavLink} to="/contact">

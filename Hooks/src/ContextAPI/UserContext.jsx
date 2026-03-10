@@ -7,7 +7,9 @@ const AppProvider=({children})=>{
         name:"TJ",
         age:22
     }
-    return <AppContext.Provider value={userData}>
+    const myName="Tushar"
+    // if single value to be passed then : value={userData}
+    return <AppContext.Provider value={{userData,myName}}>   
         {children}
     </AppContext.Provider>
 }

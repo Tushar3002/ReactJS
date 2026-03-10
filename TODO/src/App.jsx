@@ -3,10 +3,18 @@ import "./App.css";
 function App() {
   const [task, setTask] = useState("");
   const [list, setList] = useState([]);
-  const [check, setCheck] = useState(true);
-  console.log(check);
+  // const [check, setCheck] = useState(true);
+  const toggleTask = (idx) => {
+    const updatedList = list.map((item, i) =>
+      i === idx ? { ...item, completed: !item.completed } : item,
+    );
+    setList(updatedList);
+    saveData(updatedList);
+  };
 
-  console.log(task);
+  // console.log(check);
+
+  // console.log(task);
 
   // function addData() {
   //   setList([...list, task]);
@@ -15,7 +23,11 @@ function App() {
   // }
 
   function addData() {
-    const updatedList = [...list, task];
+    const updatedList = [...list, { text: task, completed: false }];
+
+    // console.log(list);
+    // console.log(updatedList);
+    
     setList(updatedList);
     saveData(updatedList);
     setTask("");
@@ -70,16 +82,19 @@ function App() {
 
       <div>
         <ul className="tast-list">
-          {list.map((val, idx) => (
-            <li
-              key={idx}
-              className="task-item"
-              onClick={() => setCheck(!check)}
-            >
-              <span style={{ textDecoration: check ? "none" : "line-through" }}>
-                {val}
+          {list.map((item, idx) => (
+            <li key={idx} className="task-item">
+              <span
+                onClick={() => toggleTask(idx)}
+                style={{
+                  textDecoration: item.completed ? "line-through" : "none",
+                  color: item.completed ? "gray" : "white",
+                  cursor: "pointer",
+                }}
+              >
+                {item.text}
               </span>
-              <button className="delete-btn" onClick={() => handleDelete(val)}>
+              <button className="delete-btn" onClick={() => handleDelete(item)}>
                 ×
               </button>
             </li>

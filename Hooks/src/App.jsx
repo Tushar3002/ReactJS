@@ -6,18 +6,20 @@ import Counter from './UseReducerHook'
 import UseRefHook from './UseRefHook'
 import UseLayoutEffectHook from './UseLayoutEffectHook'
 import UseMemoHook from './UseMemoHook'
+import UseCallbackExample from './UseCallbackHook'
 
 function App() {
   return(
     <div>
-      {/* <UseState />
-      <UseEffect/> */}
+      <UseState />
+      <UseEffect/>
 
       <Child/>
       <Counter/>
       <UseRefHook/>
       <UseLayoutEffectHook/>
       <UseMemoHook/>
+      <UseCallbackExample/>
     </div>
   )
 }

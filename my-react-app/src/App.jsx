@@ -38,11 +38,11 @@ function App() {
         {/* <h1>Hello TJ</h1>
         <h3>{a}</h3>
         <h3>{nm("Jana")}</h3>
-        <button onClick={()=>clk("TJ")}> Click </button>
-        <Footer />
+        <button onClick={()=>clk("TJ")}> Click </button> */}
+        {/* <Footer /> */}
 
         <Counter/>
-        <Toggle/> */}
+        <Toggle/>
         {/* Props are passed */}
         <User obj={obj} college={"MU"}/>
         <User obj={obj2} />
@@ -63,7 +63,7 @@ function App() {
         </div>
 
 
-        {/* <Clock/> */}
+        <Clock/>
 
 
         </div>

@@ -18,10 +18,10 @@ createRoot(document.getElementById('root')).render(
     {/* <Input /> */}
     {/* <Profile/> */}
     {/* <StyledComponents /> */}
-    <DerivedState/>
+    {/* <DerivedState/> */}
     
-    {/* <MyProvider>
+    <MyProvider>
       <Home />
-    </MyProvider> */}
+    </MyProvider>
   </StrictMode>,
 )

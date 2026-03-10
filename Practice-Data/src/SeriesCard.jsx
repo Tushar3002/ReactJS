@@ -13,10 +13,11 @@ function SeriesCard({ val }) {
         <p>{val.description}</p>
         <p><strong>Cast:</strong> {val.cast.join(", ")}</p>
         <p><strong>Genre:</strong> {val.genre.join(", ")}</p>
-
+        
         <a href={val.watch_url} target="_blank" rel="noreferrer">
           <button className="watch-btn">Watch Now</button>
         </a>
+        
       </div>
     </li>
   );
