@@ -249,21 +249,9 @@ Example:
 
 ```
 
----
 
-Next I will give **Part 2** which includes:
-
-- `useEffect` (very detailed)
-- `useRef`
-- lifecycle patterns
-
-These are **the most important hooks in React**.
 ```
-Great 👍 Here is **Part 2** of your **React Hooks Markdown Guide**.
 
-This part covers the **most important hook in React: `useEffect`**, plus `useRef`.
-
----
 
 # 📘 React Hooks Guide (Part 2)
 
@@ -294,7 +282,7 @@ useEffect(() => {
   }
 
 }, [dependencies])
-````
+```
 
 Structure explanation:
 
@@ -497,19 +485,7 @@ Better separation of logic
 const ref = useRef(initialValue)
 ```
 
----
-Below is your **rewritten Markdown section (lines ~505–1041)** with **fixed Markdown formatting issues**.
-Main fixes I applied:
 
-* Removed **broken triple backticks inside ```md blocks** (this was the main formatting problem).
-* Fixed **nested code block errors**.
-* Standardized **headings and separators**.
-* Cleaned **tables and explanations**.
-* Ensured it renders correctly in **GitHub / VSCode Markdown preview**.
-
-You can safely paste this into your `.md` file.
-
----
 
 # React Hooks Guide (Part 2 – continued)
 

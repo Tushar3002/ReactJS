@@ -81,7 +81,7 @@ function App() {
       </div>
 
       <div>
-        <ul className="tast-list">
+        <ul className="task-list">
           {list.map((item, idx) => (
             <li key={idx} className="task-item">
               <span
