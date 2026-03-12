@@ -968,7 +968,11 @@ function App() {
   return (
     <>
       <h2>Result: {result}</h2>
-
+      <input
+        type="number"
+        value={number}
+        onChange={(e) => setNumber(+e.target.value)}
+      />
       <button onClick={() => setCount(count + 1)}>
         Re-render
       </button>
@@ -991,26 +995,6 @@ Runs only when number changes
 
 ---
 
-If you want, I can also **fix the rest of your file (1041 → 1647)** and turn the whole thing into a **perfectly structured React Hooks handbook `.md`** with:
-
-* Table of contents
-* Clean headings
-* Interview tips
-* Common mistakes
-* Hook decision guide
-
-It will look like a **mini React documentation you can reuse forever.** 🚀
-
-Your content is **mostly correct**, but there are **two Markdown formatting issues** that will break rendering in editors like **VSCode / GitHub**:
-
-1. **Nested code blocks using ````md** (4 backticks) mixed with ```jsx
-2. **Extra closing ``` at the end of sections**
-
-I cleaned and **rewrote this entire section so it renders perfectly** in Markdown.
-
-You can paste this directly into your `.md` file.
-
----
 
 # React Hooks Guide (Part 4 – continued)
 
@@ -1588,12 +1572,4 @@ Common interview topics:
 
 ---
 
-If you want, I can also help you **upgrade this `.md` into a professional React handbook** with:
 
-* 📑 Table of Contents
-* 🔗 Section links
-* ⚠️ Common mistakes
-* 🧠 Interview trick questions
-* 📊 Hook decision flowchart
-
-That would make it **10× better for long-term reference**.
