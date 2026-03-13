@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { fetchPost } from "../API/api";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { deletePost, fetchPost } from "../API/api";
+import { keepPreviousData, QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { NavLink } from "react-router-dom";
 
 function FetchRQ() {
@@ -9,12 +9,23 @@ function FetchRQ() {
   // useEffect(()=>{
   //     fetchData()
   // },[])
+
+  const queryClient=useQueryClient()
   const [pageNumber,setPageNumber]=useState(0)
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["posts",pageNumber], //in place of state
     queryFn: ()=>fetchPost(pageNumber), //IN place of useEffect
     placeholderData:keepPreviousData  //it does not show the pending or loadinf msg anymore
   });
+
+  const deleteMutation=useMutation({
+    mutationFn:(id)=>deletePost(id),
+    onSuccess:(data,id)=>{
+      queryClient.setQueryData(["posts",pageNumber],(cur)=>{
+        return cur?.filter((postId)=>postId.id!==id)
+      })
+    }
+  })
 
   if (isPending) return <p>Pending ...</p>;
   if (isError) return <p>Error : {error.message || "Something is wrong"}</p>;
@@ -31,6 +42,8 @@ function FetchRQ() {
             </div>
             <p className="body">BODY: {cur.body}</p>
           </NavLink>
+
+          <button onClick={()=>deleteMutation.mutate(cur.id)}>Delete</button>
         </li>
       ))}
     </ul>
