@@ -1,106 +1,115 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 62.5%;
-  font-family: "urbanist";
-}
-
-p,
-li,
-a,
-button {
-  font-size: 1.7rem;
-  letter-spacing: 0.1rem;
-}
-
-li {
-  list-style: none;
-}
-
-a {
-  color: #000;
-
-  &:hover {
-    color: #2e86c1;
-    text-decoration: underline;
-  }
-}
-
-button {
-  cursor: pointer;
-}
-
-header {
-  height: 10rem;
-  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
-  background-color: #d4e6f1;
-  width: 100%;
-}
-
 .container {
-  max-width: 132rem;
+  padding: 20px;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  max-width: 700px;
   margin: auto;
-  height: 10rem;
 }
 
-.grid {
-  display: grid;
+.post-card {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  transition: 0.2s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
-.navbar-grid {
-  grid-template-columns: 0.5fr 1fr;
-  align-items: center;
-  height: 10rem;
-  padding: 0 3.2rem;
+.post-card:hover {
+  transform: translateY(-4px);
 }
 
-nav ul {
+.title-row {
   display: flex;
-  justify-content: flex-end;
-  /* background-color: yellow; */
-  gap: 3.2rem;
+  gap: 8px;
 }
 
-.ham-menu {
-  display: none;
+.body {
+  margin-top: 8px;
+  color: #555;
 }
 
-/* media queries  */
-@media screen and (max-width: 998px) {
-  .menu-web {
-    display: none;
-  }
+.header {
+  background: #1e293b;
+  padding: 15px 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
 
-  .ham-menu {
-    display: inline-block;
-    /* justify-content: flex-end; */
-    text-align: end;
-  }
+.nav-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .menu-mobile {
-    position: absolute;
-    top: 10rem;
-    left: 0;
-    background-color: #fff;
-    width: 100%;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px;
-  }
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
 
-  .menu-mobile ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
 
-    & li:first-child {
-      margin-top: 1.2rem;
-    }
+.nav-links li a {
+  text-decoration: none;
+  color: #cbd5f5;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
 
-    & li:last-child {
-      margin-bottom: 1.2rem;
-    }
-  }
+.nav-links li a:hover {
+  color: #38bdf8;
+}
+
+/* Active NavLink style */
+.nav-links .active {
+  color: #38bdf8;
+  border-bottom: 2px solid #38bdf8;
+  padding-bottom: 3px;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.page p {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.page button {
+  background-color: #38bdf8;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.page button:hover {
+  background-color: #0ea5e9;
+  transform: translateY(-2px);
+}
+
+.page button:active {
+  transform: scale(0.95);
 }
