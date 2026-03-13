@@ -8,9 +8,9 @@ function FetchOld() {
     const fetchData=async()=>{
         try {
             const res=await fetchPost()
-            res.status===200?setPosts(res.data):[]
+            setPosts(res)
             // console.log(res);
-            console.log(res.data);
+            console.log(res);
             
             
         } catch (error) {
