@@ -46,7 +46,6 @@ function Input() {
 
         <Checkbox />
 
-
         <MapData/>
 
         <h1>Select Your Fav Color</h1>

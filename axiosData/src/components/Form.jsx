@@ -55,6 +55,7 @@ export const Form = ({ data, setData, updateDataApi, setUpdateDataApi }) => {
           return curEle.id === res.data.id ? res.data : curEle;
         });
       });
+      setAddData({ title: "", body: "" });
     }
   };
 

@@ -8,7 +8,6 @@ function Clock({color="white"}) {
             setClock(new Date().toLocaleTimeString())
          },[])
         }
-       
     )
   return (
     <div style={{backgroundColor:"black", borderRadius:"10px",width:"200px", paddingLeft:"20px"}}>
