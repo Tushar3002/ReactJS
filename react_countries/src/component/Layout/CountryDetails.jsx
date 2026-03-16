@@ -63,7 +63,7 @@ function CountryDetails() {
                 <p>
                   <span className="card-description">Top Level Domain:</span>
                   {country.tld[0]}
-                </p>
+                </p>  
                 <p>
                   <span className="card-description"> Currencies: </span>
                   {Object.keys(country.currencies)
