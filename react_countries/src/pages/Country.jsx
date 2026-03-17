@@ -47,6 +47,8 @@ function Country() {
       <ul className='grid grid-four-cols'>
         {
           filteredCountries.map((curcountry,idx)=>{
+            console.log(curcountry);
+            
             return <CountryCard country={curcountry} key={idx}/>
           })
         }

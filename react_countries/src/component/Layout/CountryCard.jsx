@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 
 function CountryCard({ country }) {
   const { name, population, region, flags, capital, currencies } = country;
+
   return (
     <li className="country-card card">
       <div className="container-card bg-white-box">
@@ -20,6 +21,12 @@ function CountryCard({ country }) {
           <p>
             <span className="card-description">Capital:</span>
             {capital[0]}
+          </p>
+          <p>
+            <span className="card-description">Currencies :</span>
+            {Object.values(currencies || {})[0]?.name
+              ? ` ${Object.values(currencies || {})[0].symbol}`
+              : "N/A"}
           </p>
 
           <NavLink to={`/country/${name.common}`}>
