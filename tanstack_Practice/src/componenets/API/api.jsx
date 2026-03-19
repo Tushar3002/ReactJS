@@ -17,7 +17,7 @@ export const fetchInd=async(id)=>{
 }
 
 export const deletePost=async(id)=>{
-    return api.delete(`/posts/${id}`)
+    return await api.delete(`/posts/${id}`)
 }
 
 export const fetchUsers = async ({ pageParam =1}) => {
