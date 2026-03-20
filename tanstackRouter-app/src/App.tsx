@@ -1,4 +1,4 @@
-import { createRouter, RouterProvider, useRouteContext } from "@tanstack/react-router"
+import { createRouter, RouterProvider } from "@tanstack/react-router"
 import { routeTree } from "./routeTree.gen"
 import { useRouterContextState } from "./lib/use-router-context-state";
 
