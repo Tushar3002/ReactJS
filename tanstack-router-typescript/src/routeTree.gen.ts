@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SearchRouteImport } from './routes/search'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PokemonIndexRouteImport } from './routes/pokemon/index'
 import { Route as PokemonIdRouteImport } from './routes/pokemon/$id'
 
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
@@ -38,12 +44,14 @@ const PokemonIdRoute = PokemonIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/profile': typeof ProfileRoute
+  '/search': typeof SearchRoute
   '/pokemon/$id': typeof PokemonIdRoute
   '/pokemon/': typeof PokemonIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/profile': typeof ProfileRoute
+  '/search': typeof SearchRoute
   '/pokemon/$id': typeof PokemonIdRoute
   '/pokemon': typeof PokemonIndexRoute
 }
@@ -51,26 +59,35 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/profile': typeof ProfileRoute
+  '/search': typeof SearchRoute
   '/pokemon/$id': typeof PokemonIdRoute
   '/pokemon/': typeof PokemonIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/profile' | '/pokemon/$id' | '/pokemon/'
+  fullPaths: '/' | '/profile' | '/search' | '/pokemon/$id' | '/pokemon/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/profile' | '/pokemon/$id' | '/pokemon'
-  id: '__root__' | '/' | '/profile' | '/pokemon/$id' | '/pokemon/'
+  to: '/' | '/profile' | '/search' | '/pokemon/$id' | '/pokemon'
+  id: '__root__' | '/' | '/profile' | '/search' | '/pokemon/$id' | '/pokemon/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ProfileRoute: typeof ProfileRoute
+  SearchRoute: typeof SearchRoute
   PokemonIdRoute: typeof PokemonIdRoute
   PokemonIndexRoute: typeof PokemonIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profile': {
       id: '/profile'
       path: '/profile'
@@ -105,6 +122,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ProfileRoute: ProfileRoute,
+  SearchRoute: SearchRoute,
   PokemonIdRoute: PokemonIdRoute,
   PokemonIndexRoute: PokemonIndexRoute,
 }
