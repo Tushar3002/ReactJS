@@ -1,10 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
 import z from 'zod'
-import {zodValidator} from '@tanstack/zod-adapter'
+import {fallback, zodValidator} from '@tanstack/zod-adapter'
 
 
 const productSearchParamsSchema = z.object({
-  sort_by: z.enum(["newest", "oldest", "price"]),
+  sort_by: fallback(z.enum(["newest", "oldest", "price"]),'newest') ,     //.catch("newest"),
   product_type: z.enum(["shoes", "t-shirts"]).default("shoes"),
   pagination: z
     .object({
