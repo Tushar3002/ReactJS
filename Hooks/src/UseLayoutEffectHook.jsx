@@ -1,4 +1,4 @@
-//useLayoutEffect() runs synchronously after a render before teh screen is updated
+//useLayoutEffect() runs synchronously after a render before the screen is updated
 
 //useEffect() runs asynchronously and after a render is painted to the screen
 

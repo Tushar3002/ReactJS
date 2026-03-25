@@ -13,7 +13,7 @@ function Posts() {
     // console.log(res);
     setData(res.data)
     // console.log(data);
-    
+  
   }
 
   const handleDeletePost=async(id)=>{
@@ -42,12 +42,12 @@ function Posts() {
 
       <ul className="posts-grid">
         {data.map((obj) => {
-          return (
+          return (  
             <li key={obj.id} className="post-card">
               <p className="post-title">Title: {obj.title}</p>
               <h3 className="post-body">{obj.body}</h3>
 
-              <div className="btn-group">
+              <div className="btn-group"> 
                 <button className="edit-btn" onClick={()=>handleUpdatePost(obj)}>Edit</button>
                 <button className="delete-btn" onClick={()=>handleDeletePost(obj.id)}>Delete</button>
               </div>

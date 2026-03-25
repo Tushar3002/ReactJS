@@ -83,3 +83,15 @@ export function fetchTask(){
         }
     }
 }
+
+// import { createAsyncThunk } from "@reduxjs/toolkit";
+
+// export const fetchTask = createAsyncThunk(
+//   "task/fetch",
+//   async () => {
+//     const res = await fetch("https://jsonplaceholder.typicode.com/todos?_limit=3");
+//     const data = await res.json();
+
+//     return data.map(x => x.title); // this becomes action.payload
+//   }
+// );

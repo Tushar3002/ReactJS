@@ -49,8 +49,6 @@ function Checkbox() {
         <h3>Gender : {gender}</h3>
 
 
-
-
         <h1>Select City</h1>
 
         <select onChange={handleCity}  value={city}>

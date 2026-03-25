@@ -15,7 +15,7 @@ function App() {
       <UseEffect/>
 
       <Child/>
-      <Counter/>
+      <Counter/>  
       <UseRefHook/>
       <UseLayoutEffectHook/>
       <UseMemoHook/>
