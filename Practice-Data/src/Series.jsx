@@ -2,6 +2,7 @@ import React from 'react'
 import seriesData from './api/seriesData.json'
 import SeriesCard from './SeriesCard'
 import './index.css'
+import './App.css'
 
 function Series() {
   return (

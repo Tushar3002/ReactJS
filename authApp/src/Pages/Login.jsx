@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useAuth } from "../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 
+import '../App.css'
+
 function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();

@@ -7,7 +7,8 @@ function SeriesCard({ val }) {
         <img src={val.img_url} alt={val.name} />
       </div>
 
-      <div className="card-content">
+      {/* <div className="card-content"> */}
+      <div className="flex flex-col gap-2">
         <h2>{val.name}</h2>
         <h3>⭐ {val.rating}</h3>
         <p>{val.description}</p>
