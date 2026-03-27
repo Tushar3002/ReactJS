@@ -1,0 +1,13 @@
+/* App.css */
+.input-box {
+  border: 1px solid #ccc; /* default gray border */
+  padding: 8px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.input-error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
