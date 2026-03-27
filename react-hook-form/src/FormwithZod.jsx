@@ -12,7 +12,7 @@ function FormwithZod() {
       .string()
       .min(3, "Minimum 3 characters")
       .max(10, "Maximum 10 characters")
-      .regex(/^[A-Za-z]+$/i, "Only letters allowed"),
+      .regex(/^[a-z]+$/i, "Only letters allowed"),
     age: z
       .string()
       .refine((val) => !val || (Number(val) >= 18 && Number(val) <= 100), {
@@ -23,7 +23,7 @@ function FormwithZod() {
       .min(2, "City must be at least 2 characters")
       .max(50, "City can be max 50 characters")
       .optional(),
-    email: z.string().email("Invalid email address"),
+    email: z.email("Invalid email address"),
     password: z.string().min(6, "Password must be at least 6 characters"),
     confirmPassword: z.string(),
   }).refine((data) => data.password === data.confirmPassword, {
