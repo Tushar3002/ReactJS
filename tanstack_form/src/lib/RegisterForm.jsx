@@ -200,7 +200,7 @@ export default function RegisterForm() {
                 />
 
                 {!field.state.meta.isValid && (
-                  <div className="text-red-900 mt-2">
+                  <div className="text-red-500 mt-2">
                     {field.state.meta.errors
                       .map((error) => error?.message)
                       .join(", ")}
