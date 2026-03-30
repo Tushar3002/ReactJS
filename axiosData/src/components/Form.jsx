@@ -56,19 +56,28 @@ export const Form = ({ data, setData, updateDataApi, setUpdateDataApi }) => {
         });
       });
       setAddData({ title: "", body: "" });
+        setUpdateDataApi({});
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const action = e.nativeEvent.submitter.value;
-    if (action === "ADD") {
-      addPostData();
-    } else if (action === "EDIT") {
-      updatePostData();
-    }
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const action = e.nativeEvent.submitter.value;
+  //   if (action === "ADD") {
+  //     addPostData();
+  //   } else if (action === "EDIT") {
+  //     updatePostData();
+  //   }
+  // };
+const handleSubmit = (e) => {
+  e.preventDefault();
 
+  if (isEmpty) {
+    addPostData();
+  } else {
+    updatePostData();
+  }
+};
   return (
     <form className="post-form" onSubmit={handleSubmit}>
       <div className="form-group">

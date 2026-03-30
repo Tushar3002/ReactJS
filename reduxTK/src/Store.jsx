@@ -1,7 +1,7 @@
 import {applyMiddleware, createStore} from 'redux'
 import {thunk} from 'redux-thunk'
 
-import {configureStore, createSlice} from '@reduxjs/toolkit'
+import {configureStore, createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 
 //---OLD
 // const ADD_TASK="task/add"
@@ -11,6 +11,17 @@ import {configureStore, createSlice} from '@reduxjs/toolkit'
 const initialState={
     task:[],
 }
+
+//new 
+export const fetchTask = createAsyncThunk(
+  "task/fetchTask", // action type
+  async () => {
+    const res = await fetch("https://jsonplaceholder.typicode.com/todos?_limit=3");
+    const data = await res.json();
+    // Return only titles to match your old logic
+    return data.map((x) => x.title);
+  }
+);
 //reducer function      //OLD
 // const taskReducer=(state=initialState,action)=>{
 //     switch (action.type) {
@@ -41,21 +52,32 @@ const initialState={
 
 
 //Redux TK Slice()  ---NEW ------ inplace of reducer function
-const taskReducer=createSlice({
-    name:"task",
-    initialState:initialState,  //here we can just write initialState only as if key and value are same 
-    reducers:{
-        addTask(state,action){
-            state.task.push(action.payload)
-            // state.task=[...state.task,action.payload]
-        },
-        deleteTask(state,action){
-            state.task=state.task.filter(
-                (curTask,idx)=>idx!==action.payload
-            )
-        },
-    }
-})
+const taskReducer = createSlice({
+  name: "task",
+  initialState: { task: [], status: "idle", error: null }, // optional status & error
+  reducers: {
+    addTask(state, action) {
+      state.task.push(action.payload);
+    },
+    deleteTask(state, action) {
+      state.task = state.task.filter((_, idx) => idx !== action.payload);
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchTask.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchTask.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.task.push(...action.payload);
+      })
+      .addCase(fetchTask.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      });
+  },
+});
 // console.log(taskReducer);
 
 //new 
@@ -102,15 +124,18 @@ console.log(store.dispatch(addTask("ALOO")));
 //     return {type:DELETE_TASK,payload:id}
 // }
 
-export function fetchTask(){
-    return async(dispatch)=>{
-        try {
-            const res=await fetch("https://jsonplaceholder.typicode.com/todos?_limit=3")
-            const task=await res.json()
-            dispatch({type:FETCH_TASK,payload:task.map(x=>x.title)})
-        } catch (error) {
-            console.log(error);
+// OLD
+// export function fetchTask(){
+//     return async(dispatch)=>{
+//         try {
+//             const res=await fetch("https://jsonplaceholder.typicode.com/todos?_limit=3")
+//             const task=await res.json()
+//             dispatch({type:FETCH_TASK,payload:task.map(x=>x.title)})
+//         } catch (error) {
+//             console.log(error);
             
-        }
-    }
-}
+//         }
+//     }
+// }
+
+

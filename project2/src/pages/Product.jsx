@@ -35,7 +35,7 @@ const Product = () => {
         Add to Cart
       </button>
     </div>
-  );
+  )
 };
 
 export default Product;
