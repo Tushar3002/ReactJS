@@ -14,14 +14,14 @@ import Home from './ContextAPI/Home.jsx'
 createRoot(document.getElementById('root')).render(
   
   <StrictMode>
-    {/* <App />    */}
+    <App />   
     {/* <Input /> */}
     {/* <Profile/> */}
     {/* <StyledComponents /> */}
     {/* <DerivedState/> */}
     
-    <MyProvider>
+    {/* <MyProvider>
       <Home />
-    </MyProvider>
+    </MyProvider> */}
   </StrictMode>,
 )

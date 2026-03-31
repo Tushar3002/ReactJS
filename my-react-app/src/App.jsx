@@ -41,16 +41,16 @@ function App() {
         <button onClick={()=>clk("TJ")}> Click </button> */}
         {/* <Footer /> */}
 
-        <Counter/>
-        <Toggle/>
+        {/* <Counter/>
+        <Toggle/> */}
         {/* Props are passed */}
-        <User obj={obj} college={"MU"}/>
+        {/* <User obj={obj} college={"MU"}/>
         <User obj={obj2} />
-        <User obj={obj3} college={"FU"}/>
+        <User obj={obj3} college={"FU"}/> */}
 
 
           {/* //CHILDREn is used */}
-        <div>
+        {/* <div>
             <Wrapper>
               <h1>Hello EveryOne</h1>
             </Wrapper>
@@ -63,10 +63,23 @@ function App() {
         </div>
 
 
-        <Clock/>
+        <Clock/> */}
 
+        <Wrap>
+          <h3>Hello</h3>
+        </Wrap>
 
+          
         </div>
+  )
+}
+
+
+function Wrap({children}){
+  return(
+    <div style={{color:'red'}}>
+      {children}
+    </div>
   )
 }
 
