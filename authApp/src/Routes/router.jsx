@@ -8,6 +8,8 @@ import DashBoard from "../Pages/DashBoard";
 import Home from "../Pages/Home";
 import Logout from "../Pages/Logout";
 import ForgotPassword from "../Pages/ForgotPassword";
+import { getIdRec, getRec } from "../api/api";
+import RecipeDetail from "../Pages/RecipeDetail";
 
 
 export const router = createBrowserRouter([
@@ -17,6 +19,7 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        
       },
       {
         path: "/about",
@@ -43,6 +46,12 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <DashBoard />,
+        loader:getRec
+      },
+      {
+        path:'/dashboard/:id',
+        element:<RecipeDetail/>,
+        loader:getIdRec
       },
       {
         path: "/logout",

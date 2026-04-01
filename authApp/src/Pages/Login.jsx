@@ -1,9 +1,8 @@
-// Pages/Login.js
 import { useState } from "react";
 import { useAuth } from "../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-import '../App.css'
+import '../index.css'
 
 function Login() {
   const { login } = useAuth();
