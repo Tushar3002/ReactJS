@@ -1,6 +1,19 @@
 import {applyMiddleware, createStore} from 'redux'
 import {thunk} from 'redux-thunk'
 
+// createSlice()
+//      ↓
+// taskReducer.reducer
+//      ↓
+// configureStore({
+//   reducer: {
+//     taskReducer: ...
+//   }
+// })
+//      ↓
+// state.taskReducer
+//      ↓
+// useSelector(state => state.taskReducer.task)
 import {configureStore, createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 
 //---OLD
