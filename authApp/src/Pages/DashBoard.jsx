@@ -17,7 +17,7 @@ function DashBoard() {
 
       <h1 className="text-3xl font-bold text-center mb-8">Recipe Dashboard</h1>
 
-      {/* Recipe Cards */}
+      {/* Card */}
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {recipes.map((recipe) => (
           <div
@@ -30,8 +30,8 @@ function DashBoard() {
               className="w-full h-48 object-cover"
             />
             <div className="p-4">
-              <h3 className="text-lg font-semibold mb-2">
-                <Link to={`/dashboard/${recipe.id}`} className="hover:text-blue-500">
+              <h3 className="text-lg font-semibold mb-4">
+                <Link to={`/dashboard/${recipe.id}`} className="hover:text-emerald-800">
                   {recipe.name}
                 </Link>
               </h3>

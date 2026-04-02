@@ -26,14 +26,13 @@ function RecipeDetail() {
 
       <div className="flex flex-col md:flex-row gap-8">
 
-        {/* Image */}
         <div className="shrink-0">
           <img
             src={image}
             alt={name}
             className="w-full md:w-[400px] h-auto rounded-lg object-cover shadow-md"
           />
-          <div className="mt-4 pt-3 space-y-1">
+          <div className="mt-4 pt-3 space-y-2">
             <p><span className="font-semibold">Cuisine:</span> {cuisine}</p>
             <p><span className="font-semibold">Difficulty:</span> {difficulty}</p>
             <p><span className="font-semibold">Prep Time:</span> {prepTimeMinutes} mins</p>
@@ -65,14 +64,13 @@ function RecipeDetail() {
             </ol>
           </div>
 
-          {/* Tags */}
           <div className="mt-4 flex flex-wrap gap-2">
             {tags.map((tag, idx) => (
               <span
                 key={idx}
                 className="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-sm"
               >
-                {tag}
+                # {tag}
               </span>
             ))}
           </div>
