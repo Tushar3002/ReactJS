@@ -13,6 +13,7 @@ const Cart = () => {
 
       {cartItems.map((item) => (
         <div key={item.id} style={{ marginBottom: "10px" }}>
+          <img src={item.thumbnail} alt="" width="150px" height="150px" />
           <h4>{item.title}</h4>
           <p>₹ {item.price}</p>
 

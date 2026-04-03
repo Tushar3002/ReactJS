@@ -18,14 +18,13 @@ const Product = () => {
     fetchProduct();
   }, [id]);
 
-  // 🔄 loading state
   if (!product) {
     return <h2>Loading...</h2>;
   }
 
   return (
     <div style={{ padding: "20px" }}>
-      <img src={product.image} alt="" width="200px" />
+      <img src={product.thumbnail} alt="" width="200px" />
 
       <h2>{product.title}</h2>
       <p>{product.description}</p>

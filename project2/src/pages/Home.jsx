@@ -8,16 +8,18 @@ const Home = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await api.get("/products");
-      setProducts(res.data);
+      const res = await api.get("/products?&skip=30");
+      setProducts(res.data.products);
+      console.log(res.data.products);
+      
     };
     fetchProducts();
   }, []);
 
   return (
-    <div>
-      <h1>Products</h1>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
+    <div className="min-h-screen max-w-6xl mx-auto px-4 py-4">
+      <h1 className="text-xl font-bold">Products</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((item) => (
           <ProductCard key={item.id} product={item} />
         ))}
