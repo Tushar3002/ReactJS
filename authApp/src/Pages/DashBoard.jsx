@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 
 function DashBoard() {
-  const recipeData = useLoaderData(); 
+  const recipeData = useLoaderData();
   const navigate = useNavigate();
 
   const { recipes, total, page, limit } = recipeData;
@@ -14,7 +14,6 @@ function DashBoard() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-
       <h1 className="text-3xl font-bold text-center mb-8">Recipe Dashboard</h1>
 
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -30,7 +29,10 @@ function DashBoard() {
             />
             <div className="p-4">
               <h3 className="text-lg font-semibold mb-4">
-                <Link to={`/dashboard/${recipe.id}`} className="hover:text-emerald-800">
+                <Link
+                  to={`/dashboard/${recipe.id}`}
+                  className="hover:text-emerald-800"
+                >
                   {recipe.name}
                 </Link>
               </h3>

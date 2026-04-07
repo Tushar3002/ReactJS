@@ -7,7 +7,7 @@ const GuestRoute = () => {
 
   if (loading) return <div>Loading...</div>;
 
-  return user ? <Navigate to="/dashboard" /> : <Outlet/>;
+  return user ? <Navigate to="/dashboard" /> : <Outlet />;
 };
 
 export default GuestRoute;

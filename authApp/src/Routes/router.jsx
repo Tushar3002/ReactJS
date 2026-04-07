@@ -11,7 +11,6 @@ import ForgotPassword from "../Pages/ForgotPassword";
 import { getIdRec, getRec } from "../api/api";
 import RecipeDetail from "../Pages/RecipeDetail";
 
-
 export const router = createBrowserRouter([
   {
     element: <PublicLayout />,
@@ -19,14 +18,13 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        
       },
       {
         path: "/about",
         element: <About />,
       },
       {
-        element: <GuestRoutes />, 
+        element: <GuestRoutes />,
         children: [
           {
             path: "/login",
@@ -46,12 +44,12 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <DashBoard />,
-        loader:getRec
+        loader: getRec,
       },
       {
-        path:'/dashboard/:id',
-        element:<RecipeDetail/>,
-        loader:getIdRec
+        path: "/dashboard/:id",
+        element: <RecipeDetail />,
+        loader: getIdRec,
       },
       {
         path: "/logout",
@@ -63,4 +61,4 @@ export const router = createBrowserRouter([
     path: "*",
     element: <Navigate to={"/login"} />,
   },
-]);                                                                                                     
+]);
