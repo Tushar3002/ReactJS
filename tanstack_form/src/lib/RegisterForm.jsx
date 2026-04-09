@@ -133,7 +133,7 @@ export default function RegisterForm() {
   // const isDirty=useStore(form.store,(state)=>state.isDirty)
 
   return (
-    <div className="text-start max-w-[400px] p-4">
+    <div className="text-start max-w-100 p-4">
       {/* {errors && <p className="bg-red-500 m-1 ">{errors.join(", ")}</p>} */}
 
       {/* {JSON.stringify(errors)} */}

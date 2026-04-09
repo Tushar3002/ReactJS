@@ -7,7 +7,7 @@ import Cart from "../pages/Cart";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />, // layout
+    element: <App />,
     children: [
       {
         index: true,

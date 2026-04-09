@@ -67,7 +67,7 @@ export const fetchTask = createAsyncThunk(
 //Redux TK Slice()  ---NEW ------ inplace of reducer function
 const taskReducer = createSlice({
   name: "task",
-  initialState: { task: [], status: "idle", error: null }, // optional status & error
+  initialState: { task: [], status: "idle", error: null }, 
   reducers: {
     addTask(state, action) {
       state.task.push(action.payload);

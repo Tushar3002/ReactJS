@@ -1,10 +1,13 @@
 import React from "react";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { useAuth } from "../auth/AuthContext";
 
 function DashBoard() {
   const recipeData = useLoaderData();
   const navigate = useNavigate();
-
+  const {user}=useAuth()
+  console.log(user);
+  
   const { recipes, total, page, limit } = recipeData;
   const totalPages = Math.ceil(total / limit);
 
@@ -45,7 +48,6 @@ function DashBoard() {
         ))}
       </div>
 
-      {/* Pagination */}
       <div className="flex justify-center mt-8 space-x-2">
         <button
           className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
