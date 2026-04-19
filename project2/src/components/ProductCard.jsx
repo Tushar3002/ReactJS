@@ -1,10 +1,13 @@
 import { useDispatch } from "react-redux";
 import { addToCart } from "../features/cart/cartSlice";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart);
 
+  const isInCart = cartItems.some((item) => item.id === product.id);
   return (
     <div className="border border-amber-800 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-200 bg-white">
       <div className="bg-slate-100 flex items-center justify-center h-50 overflow-hidden">
@@ -21,10 +24,13 @@ const ProductCard = ({ product }) => {
 
       <div>
         <button
-          className="bg-amber-400  rounded-xl m-3 p-1 hover:bg-amber-600 cursor-pointer "
+          className={`bg-amber-400 rounded-xl m-3 p-1 cursor-pointer ${
+            isInCart ? "bg-gray-400 cursor-not-allowed" : "hover:bg-amber-600"
+          }`}
           onClick={() => dispatch(addToCart(product))}
+          disabled={isInCart}
         >
-          Add to Cart
+          {isInCart ? "Added" : "Add to Cart"}
         </button>
 
         <Link
@@ -34,29 +40,6 @@ const ProductCard = ({ product }) => {
           View Details
         </Link>
       </div>
-      {/* <div className="p-4 flex flex-col gap-2">
-        <h4 className="text-lg font-semibold text-gray-800">
-          {product.title.slice(0, 40)}
-        </h4>
-
-        <p className="text-green-600 text-xl font-bold">₹ {product.price}</p>
-
-        <div className="flex items-center justify-between mt-3">
-          <button
-            className="bg-amber-600 text-white px-3 py-1 rounded-lg hover:bg-amber-700 active:scale-95 transition"
-            onClick={() => dispatch(addToCart(product))}
-          >
-            Add
-          </button>
-
-          <Link
-            className="text-blue-600 hover:underline hover:text-blue-800 transition"
-            to={`/product/${product.id}`}
-          >
-            Details →
-          </Link>
-        </div>
-      </div> */}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createStore, useStore } from "@tanstack/react-store";
 
-// You can instantiate the store outside of React components too!
+
 export const store = createStore({
   dogs: 0,
   cats: 0,

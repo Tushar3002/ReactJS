@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-import '../index.css'
+import "../index.css";
 
 function Login() {
   const { login } = useAuth();
@@ -23,7 +23,6 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-
     if (form.username === "tj" && form.password === "111") {
       const fakeResponse = {
         token: "abc123",
@@ -32,7 +31,7 @@ function Login() {
 
       login(fakeResponse);
 
-      navigate("/dashboard"); 
+      navigate("/dashboard");
     } else {
       alert("Invalid credentials");
     }
@@ -103,8 +102,8 @@ export default Login;
 
 //   return (
 //     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      
-//       <form 
+
+//       <form
 //         onSubmit={handleSubmit}
 //         className="bg-white p-8 rounded-xl shadow-md w-full max-w-sm"
 //       >

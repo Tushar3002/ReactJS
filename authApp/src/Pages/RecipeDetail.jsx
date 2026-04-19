@@ -19,33 +19,41 @@ function RecipeDetail() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
-
-      <h1 className="text-3xl font-bold text-center mb-8">
-        {name}
-      </h1>
+      <h1 className="text-3xl font-bold text-center mb-8">{name}</h1>
 
       <div className="flex flex-col md:flex-row gap-8">
-
         <div className="shrink-0">
           <img
             src={image}
             alt={name}
-            className="w-full md:w-[400px] h-auto rounded-lg object-cover shadow-md"
+            className="w-full md:w-100 h-auto rounded-lg object-cover shadow-md"
           />
           <div className="mt-4 pt-3 space-y-2">
-            <p><span className="font-semibold">Cuisine:</span> {cuisine}</p>
-            <p><span className="font-semibold">Difficulty:</span> {difficulty}</p>
-            <p><span className="font-semibold">Prep Time:</span> {prepTimeMinutes} mins</p>
-            <p><span className="font-semibold">Cook Time:</span> {cookTimeMinutes} mins</p>
-            <p><span className="font-semibold">Calories:</span> {caloriesPerServing} kcal</p>
-            <p><span className="font-semibold">Rating:</span> ⭐ {rating}</p>
+            <p>
+              <span className="font-semibold">Cuisine:</span> {cuisine}
+            </p>
+            <p>
+              <span className="font-semibold">Difficulty:</span> {difficulty}
+            </p>
+            <p>
+              <span className="font-semibold">Prep Time:</span>{" "}
+              {prepTimeMinutes} mins
+            </p>
+            <p>
+              <span className="font-semibold">Cook Time:</span>{" "}
+              {cookTimeMinutes} mins
+            </p>
+            <p>
+              <span className="font-semibold">Calories:</span>{" "}
+              {caloriesPerServing} kcal
+            </p>
+            <p>
+              <span className="font-semibold">Rating:</span> ⭐ {rating}
+            </p>
           </div>
         </div>
 
-
         <div className="flex-1">
-          
-
           <div className="mb-4">
             <h3 className="text-xl font-semibold mb-2">Ingredients</h3>
             <ul className="list-disc list-inside space-y-1">
@@ -74,7 +82,6 @@ function RecipeDetail() {
               </span>
             ))}
           </div>
-
         </div>
       </div>
     </div>
