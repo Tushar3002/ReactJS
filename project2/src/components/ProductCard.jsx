@@ -9,13 +9,13 @@ const ProductCard = ({ product }) => {
     <div className="border border-amber-800 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-200 bg-white">
       <div className="bg-slate-100 flex items-center justify-center h-50 overflow-hidden">
         <img
-          src={product.thumbnail}
-          alt={product.title}
+          src={product.imageUrl}
+          alt={product.name}
           className="object-contain h-full w-full"
         />
       </div>
       <div className="bg-slate-200 flex justify-around p-3">
-        <h4 className="text-xl">{product.title.slice(0, 15)}</h4>
+        <h4 className="text-xl">{product.name.slice(0, 15)}</h4>
         <p className="text-green-600 text-lg">₹ {product.price}</p>
       </div>
 

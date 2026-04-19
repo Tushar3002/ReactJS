@@ -8,8 +8,10 @@ const Home = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await api.get("/products?&skip=30");
-      setProducts(res.data.products);
+      // const res = await api.get("/products?&skip=30");
+      // setProducts(res.data.products);
+      const res = await api.get("/products");
+setProducts(res.data);
       console.log(res.data.products);
       
     };
