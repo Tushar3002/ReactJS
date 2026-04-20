@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import ProductCard from "../components/ProductCard";
-import { api } from "../api/api";
+import { api, getproducts } from "../api/api";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -11,9 +11,9 @@ const Home = () => {
       // const res = await api.get("/products?&skip=30");
       // setProducts(res.data.products);
       const res = await api.get("/products");
-setProducts(res.data);
+      // const res=await getproducts();
+      setProducts(res.data);
       console.log(res.data.products);
-      
     };
     fetchProducts();
   }, []);
