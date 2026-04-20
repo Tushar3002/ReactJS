@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { createProduct } from "../api/api";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const [form, setForm] = useState({
@@ -8,7 +10,15 @@ const AddProduct = () => {
     description: "",
     imageUrl: "",
   });
+const navigate = useNavigate();
 
+useEffect(() => {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    navigate("/login");
+  }
+}, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -35,6 +45,7 @@ const AddProduct = () => {
         <input
           name="name"
           placeholder="Product Name"
+          value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
           className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
@@ -42,6 +53,7 @@ const AddProduct = () => {
         <input
           name="price"
           placeholder="Price"
+          value={form.price}
           onChange={(e) => setForm({ ...form, price: e.target.value })}
           className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
@@ -49,6 +61,7 @@ const AddProduct = () => {
         <input
           name="description"
           placeholder="Description"
+            value={form.description}
           onChange={(e) =>
             setForm({ ...form, description: e.target.value })
           }
@@ -58,6 +71,8 @@ const AddProduct = () => {
         <input
           name="imageUrl"
           placeholder="Image URL"
+            value={form.imageUrl}
+
           onChange={(e) =>
             setForm({ ...form, imageUrl: e.target.value })
           }
