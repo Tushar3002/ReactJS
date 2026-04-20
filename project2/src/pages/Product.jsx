@@ -1,13 +1,18 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { api } from "../api/api";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../features/cart/cartSlice";
 
 const Product = () => {
   const { id } = useParams(); 
   const [product, setProduct] = useState(null);
+  const cartItems = useSelector((state) => state.cart);
+
+  const isInCart = cartItems.some((item) => item.id === product.id);
   const dispatch = useDispatch();
+
+  
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -24,15 +29,21 @@ const Product = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <img src={product.thumbnail} alt="" width="200px" />
+      <img src={product.imageUrl} alt="" width="200px" />
 
-      <h2>{product.title}</h2>
+      <h2>{product.name}</h2>
       <p>{product.description}</p>
       <h3>₹ {product.price}</h3>
 
-      <button onClick={() => dispatch(addToCart(product))}>
-        Add to Cart
-      </button>
+      <button
+          className={`bg-amber-400 rounded-xl m-3 p-1 cursor-pointer ${
+            isInCart ? "bg-gray-400 cursor-not-allowed" : "hover:bg-amber-600"
+          }`}
+          onClick={() => dispatch(addToCart(product))}
+          disabled={isInCart}
+        >
+          {isInCart ? "Added" : "Add to Cart"}
+        </button>
     </div>
   )
 };

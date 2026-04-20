@@ -58,13 +58,13 @@ const Cart = () => {
               className="flex gap-4 border-b py-4 items-center"
             >
               <img
-                src={item.thumbnail}
-                alt={item.title}
+                src={item.imageUrl}
+                alt={item.name}
                 className="w-28 h-28 object-contain"
               />
 
               <div className="flex-1">
-                <h3 className="font-semibold text-lg">{item.title}</h3>
+                <h3 className="font-semibold text-lg">{item.name}</h3>
                 <p className="text-green-600 font-bold">
                   ₹ {item.price}
                 </p>
