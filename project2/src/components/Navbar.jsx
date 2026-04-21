@@ -1,27 +1,12 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { jwtDecode } from "jwt-decode";
+import { useAuth } from "../auth/AuthContext";
 
 const Navbar = () => {
   const cartItems = useSelector((state) => state.cart);
+  const { user, logout } = useAuth();
 
-  const token = localStorage.getItem("token");
-
-  let role = null;
-
-  if (token) {
-    try {
-      const decoded = jwtDecode(token);
-      role = decoded.role;
-    } catch (err) {
-      console.error("Invalid token");
-    }
-  }
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.reload(); // quick reset
-  };
+  const role = user?.role;
 
   return (
     <nav className="flex items-center justify-between px-6 py-4 bg-gray-900 text-white shadow-md">
@@ -49,9 +34,9 @@ const Navbar = () => {
         )}
 
         {/* 🔐 AUTH BUTTONS */}
-        {token ? (
+        {user ? (
           <button
-            onClick={handleLogout}
+            onClick={logout}
             className="bg-red-500 px-3 py-1 rounded-lg hover:bg-red-600"
           >
             Logout

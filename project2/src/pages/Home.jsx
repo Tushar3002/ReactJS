@@ -1,10 +1,19 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
-import { getProducts } from "../api/api";
+import { deleteProduct, getProducts } from "../api/api";
+
 
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const handleDelete = async (id) => {
+  try {
+    await deleteProduct(id);
+    console.log("Deleted");
 
+  } catch (error) {
+    console.error(error.response?.data || error.message);
+  }
+};
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -18,7 +27,7 @@ const Home = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [handleDelete]);
 
   return (
     <div className="min-h-screen max-w-6xl mx-auto px-4 py-4">
@@ -26,7 +35,7 @@ const Home = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((item) => (
-          <ProductCard key={item.id} product={item} />
+          <ProductCard key={item.id} product={item} handleDelete={handleDelete} />
         ))}
       </div>
     </div>

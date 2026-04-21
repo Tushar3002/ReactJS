@@ -35,12 +35,10 @@ function Header() {
     <header className="bg-gray-900 text-white shadow-md">
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
         
-        {/* Logo / Brand */}
         <h1 className="text-xl font-bold tracking-wide">
           MyApp
         </h1>
 
-        {/* Navigation */}
         <nav className="flex items-center gap-6">
           <Link 
             to="/" 

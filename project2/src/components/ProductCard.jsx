@@ -3,7 +3,7 @@ import { addToCart } from "../features/cart/cartSlice";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, handleDelete }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart);
 
@@ -23,16 +23,23 @@ const ProductCard = ({ product }) => {
       </div>
 
       <div>
-        <button
-          className={`bg-amber-400 rounded-xl m-3 p-1 cursor-pointer ${
-            isInCart ? "bg-gray-400 cursor-not-allowed" : "hover:bg-amber-600"
-          }`}
-          onClick={() => dispatch(addToCart(product))}
-          disabled={isInCart}
-        >
-          {isInCart ? "Added" : "Add to Cart"}
-        </button>
-
+        <div className="flex justify-between">
+          <button
+            className={`bg-amber-400 rounded-xl m-3 p-1 cursor-pointer ${
+              isInCart ? "bg-gray-400 cursor-not-allowed" : "hover:bg-amber-600"
+            }`}
+            onClick={() => dispatch(addToCart(product))}
+            disabled={isInCart}
+          >
+            {isInCart ? "Added" : "Add to Cart"}
+          </button>
+          <button
+            onClick={() => handleDelete(product.id)}
+            className="bg-red-600 text-white rounded-lg m-3 px-3 py-1 hover:bg-red-700"
+          >
+            X
+          </button>
+        </div>
         <Link
           className="mx-5 text-lg hover:text-blue-700 hover:text-xl "
           to={`/product/${product.id}`}
