@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createProduct } from "../api/api";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const AddProduct = () => {
   const [form, setForm] = useState({
@@ -16,9 +17,20 @@ useEffect(() => {
   const token = localStorage.getItem("token");
 
   if (!token) {
+    return navigate("/login");
+  }
+
+  try {
+    const decoded = jwtDecode(token);
+
+    if (decoded.role !== "admin") {
+      return navigate("/"); // block normal users
+    }
+  } catch (err) {
+    console.error("Invalid token");
     navigate("/login");
   }
-}, []);
+}, [navigate]);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -27,8 +39,14 @@ useEffect(() => {
         ...form,
         price: Number(form.price),
       });
-
+      setForm({
+  name: "",
+  price: "",
+  description: "",
+  imageUrl: "",
+});
       console.log("Created:", res.data);
+      navigate("/");
     } catch (error) {
       console.error(error.response?.data || error.message);
     }

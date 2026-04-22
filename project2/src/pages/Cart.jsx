@@ -1,51 +1,20 @@
-// import { useSelector, useDispatch } from "react-redux";
-// import { removeCart } from "../features/cart/cartSlice";
 
-// const Cart = () => {
-//   const cartItems = useSelector((state) => state.cart);
-//   const dispatch = useDispatch();
-//   const total = cartItems.reduce(
-//   (acc, item) => acc + item.price * (item.quantity || 1),
-//   0
-// );
-//   return (
-//     <div>
-//       <h1>Cart</h1>
-
-//       {cartItems.length === 0 && <p>Cart is empty</p>}
-
-//       {cartItems.map((item) => (
-//         <div key={item.id} style={{ marginBottom: "10px" }}>
-//           <img src={item.thumbnail} alt="" width="150px" height="150px" />
-//           <h4>{item.title}</h4>
-//           <p>₹ {item.price}</p>
-
-//           <button onClick={() => dispatch(removeCart(item.id))}>
-//             Remove
-//           </button>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default Cart;
 
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, removeCart, decreaseQty } from "../features/cart/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-
+  const navigate=useNavigate()
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
-    0
+    0,
   );
 
   return (
     <div className="flex flex-col lg:flex-row gap-6 p-6 bg-gray-100 min-h-screen">
-      
       <div className="flex-1 bg-white p-4 rounded-xl shadow">
         <h1 className="text-2xl font-bold mb-4">Shopping Cart</h1>
 
@@ -65,9 +34,7 @@ const Cart = () => {
 
               <div className="flex-1">
                 <h3 className="font-semibold text-lg">{item.name}</h3>
-                <p className="text-green-600 font-bold">
-                  ₹ {item.price}
-                </p>
+                <p className="text-green-600 font-bold">₹ {item.price}</p>
 
                 <div className="flex items-center gap-2 mt-2">
                   <button
@@ -119,7 +86,10 @@ const Cart = () => {
           <span>₹ {subtotal.toFixed(2)}</span>
         </div>
 
-        <button className="w-full bg-yellow-400 mt-6 py-2 rounded-lg hover:bg-yellow-500">
+        <button
+          onClick={() => navigate("/checkout")}
+          className="w-full bg-yellow-400 mt-6 py-2 rounded-lg hover:bg-yellow-500"
+        >
           Proceed to Buy
         </button>
       </div>

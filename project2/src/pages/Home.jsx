@@ -8,6 +8,7 @@ const Home = () => {
   const handleDelete = async (id) => {
   try {
     await deleteProduct(id);
+    setProducts((prev) => prev.filter((p) => p.id !== id));
     console.log("Deleted");
 
   } catch (error) {
@@ -15,19 +16,19 @@ const Home = () => {
   }
 };
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await getProducts();
-        setProducts(res.data);
+  const fetchProducts = async () => {
+    try {
+      const res = await getProducts();
+      setProducts(res.data);
 
-        console.log(res.data); // correct
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
+      console.log(res.data);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
 
-    fetchProducts();
-  }, [handleDelete]);
+  fetchProducts();
+}, []);
 
   return (
     <div className="min-h-screen max-w-6xl mx-auto px-4 py-4">
@@ -35,7 +36,7 @@ const Home = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((item) => (
-          <ProductCard key={item.id} product={item} handleDelete={handleDelete} />
+          <ProductCard key={item.id} product={item}  />
         ))}
       </div>
     </div>

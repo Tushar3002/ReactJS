@@ -19,21 +19,27 @@ const Navbar = () => {
           Home
         </Link>
 
-        <Link to="/cart" className="relative hover:text-gray-300">
-          Cart
-          <span className="ml-1 bg-red-500 text-xs px-2 py-0.5 rounded-full">
-            {cartItems.length}
-          </span>
-        </Link>
-
-        {/* 🔐 ADMIN ONLY */}
-        {role === "admin" && (
-          <Link to="/add" className="hover:text-gray-300">
-            Add Product
+        {role !== "admin" && (
+          <Link to="/cart" className="relative hover:text-gray-300">
+            Cart
+            <span className="ml-1 bg-red-500 text-xs px-2 py-0.5 rounded-full">
+              {cartItems.length}
+            </span>
           </Link>
         )}
 
-        {/* 🔐 AUTH BUTTONS */}
+        {role === "admin" && (
+          <>
+            <Link to="/add-product" className="hover:text-gray-300">
+              Add Product
+            </Link>
+            <Link to="/admin/products" className="hover:text-gray-300">
+              Products
+            </Link>
+          </>
+        )}
+
+        {/* Auth */}
         {user ? (
           <button
             onClick={logout}

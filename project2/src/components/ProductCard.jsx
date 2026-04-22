@@ -23,7 +23,7 @@ const ProductCard = ({ product, handleDelete }) => {
       </div>
 
       <div>
-        <div className="flex justify-between">
+        
           <button
             className={`bg-amber-400 rounded-xl m-3 p-1 cursor-pointer ${
               isInCart ? "bg-gray-400 cursor-not-allowed" : "hover:bg-amber-600"
@@ -33,13 +33,8 @@ const ProductCard = ({ product, handleDelete }) => {
           >
             {isInCart ? "Added" : "Add to Cart"}
           </button>
-          <button
-            onClick={() => handleDelete(product.id)}
-            className="bg-red-600 text-white rounded-lg m-3 px-3 py-1 hover:bg-red-700"
-          >
-            X
-          </button>
-        </div>
+          
+
         <Link
           className="mx-5 text-lg hover:text-blue-700 hover:text-xl "
           to={`/product/${product.id}`}
