@@ -1,47 +1,61 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import { clearCart } from "../features/cart/cartSlice";
 import { api } from "../api/api";
 
-
-
-const handlePlaceOrder = () => {
-  dispatch(clearCart());
-  navigate("/success");
-};
-
 const Checkout = () => {
   const cartItems = useSelector((state) => state.cart);
   const navigate = useNavigate();
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const [loading, setLoading] = useState(false);
+
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
 
   const handlePlaceOrder = async () => {
-  try {
-    const items = cartItems.map(item => ({
-      productId: item.id,
-      quantity: item.quantity
-    }));
+    if (cartItems.length === 0) {
+      alert("Cart is empty");
+      return;
+    }
 
-    await api.post("/orders", { items });
+    try {
+      setLoading(true);
 
-    dispatch(clearCart());
-    navigate("/success");
+      const items = cartItems.map((item) => ({
+        productId: item.id,
+        quantity: item.quantity,
+      }));
 
-  } catch (err) {
-    console.error(err);
-  }
-};
+      const res = await api.post("/orders", { items });
+
+      // clear cart
+      dispatch(clearCart());
+
+      // 🔥 pass data to success page
+      navigate("/success", {
+        state: {
+          total,
+          orderId: res.data.orderId,
+        },
+      });
+
+    } catch (err) {
+      console.error(err);
+      alert("Order failed");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="max-w-4xl mx-auto p-6">
       <h1 className="text-2xl font-bold mb-4">Checkout</h1>
 
-      {/* Address (basic for now) */}
       <input
         placeholder="Enter Address"
         className="w-full border p-2 mb-4 rounded"
@@ -68,9 +82,10 @@ const dispatch = useDispatch();
 
         <button
           onClick={handlePlaceOrder}
+          disabled={loading}
           className="w-full bg-green-600 text-white py-2 mt-4 rounded"
         >
-          Place Order
+          {loading ? "Placing Order..." : "Place Order"}
         </button>
       </div>
     </div>
