@@ -10,12 +10,15 @@ api.interceptors.request.use((config) => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
-
   return config;
 });
 
 export const getProducts = () => {
   return api.get("/products");
+};
+
+export const getSingleProducts = (id) => {
+  return api.get(`/products/${id}`);
 };
 
 export const createProduct = (data) => {
@@ -24,6 +27,10 @@ export const createProduct = (data) => {
 
 export const deleteProduct=(id)=>{
   return api.delete(`/products/${id}`)
+}
+
+export const editProduct=(id,data)=>{
+  return api.put(`/products/${id}`,data)
 }
 
 export const loginUser = (data) => api.post("/auth/login", data);

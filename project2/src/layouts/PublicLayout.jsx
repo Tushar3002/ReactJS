@@ -6,9 +6,10 @@ import App from "../App";
 
 const PublicLayout = () => {
   return (
-    <>
-      <App/>
-    </>
+    <div>
+      <Navbar />
+      <Outlet />
+    </div>
   )
 };
 

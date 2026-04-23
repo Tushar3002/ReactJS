@@ -15,6 +15,8 @@ import AdminRoute from "./AdminRoute";
 import AdminDashBoard from "../pages/AdminDashBoard";
 import AdminProducts from "../pages/AdminProducts";
 import PrivateLayout from "../layouts/PrivateLayout";
+import MyOrders from "../pages/MyOrders";
+import AdminEditProduct from "../pages/AdminEditProduct";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +30,7 @@ const router = createBrowserRouter([
         path: "/product/:id",
         element: <Product />,
       },
-      
+
       {
         element: <GuestRoute />,
         children: [
@@ -48,8 +50,12 @@ const router = createBrowserRouter([
             element: <AddProduct />,
           },
           {
-            path:"/admin/products",
-            element:<AdminProducts/>
+            path: "/admin/products",
+            element: <AdminProducts />,
+          },
+          {
+            path:"/admin/edit/:id",
+            element:<AdminEditProduct/>
           }
         ],
       },
@@ -70,8 +76,9 @@ const router = createBrowserRouter([
         path: "/success",
         element: <Success />,
       },
-    ]
-  }
+      { path: "/orders", element: <MyOrders /> },
+    ],
+  },
 ]);
 
 export default router;

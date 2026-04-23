@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { clearCart } from "../features/cart/cartSlice";
+import { api } from "../api/api";
 
 
 
@@ -19,10 +20,22 @@ const dispatch = useDispatch();
     0
   );
 
-  const handlePlaceOrder = () => {
-    dispatch(clearCart())
+  const handlePlaceOrder = async () => {
+  try {
+    const items = cartItems.map(item => ({
+      productId: item.id,
+      quantity: item.quantity
+    }));
+
+    await api.post("/orders", { items });
+
+    dispatch(clearCart());
     navigate("/success");
-  };
+
+  } catch (err) {
+    console.error(err);
+  }
+};
 
   return (
     <div className="max-w-4xl mx-auto p-6">

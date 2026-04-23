@@ -7,11 +7,8 @@ import { Provider } from "react-redux";
 import router from "./routes/router";
 import { store } from "./store";
 import { AuthProvider } from "./auth/AuthContext";
+import App from "./App";
 
 createRoot(document.getElementById("root")).render(
-  <AuthProvider>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-  </AuthProvider>,
+  <App/>
 );

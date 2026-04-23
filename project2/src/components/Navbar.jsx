@@ -20,12 +20,19 @@ const Navbar = () => {
         </Link>
 
         {role !== "admin" && (
+          <>
           <Link to="/cart" className="relative hover:text-gray-300">
             Cart
             <span className="ml-1 bg-red-500 text-xs px-2 py-0.5 rounded-full">
               {cartItems.length}
             </span>
           </Link>
+          <Link to="/orders" className="relative hover:text-gray-300">
+            My Orders
+            
+          </Link>
+          </>
+          
         )}
 
         {role === "admin" && (
@@ -36,6 +43,7 @@ const Navbar = () => {
             <Link to="/admin/products" className="hover:text-gray-300">
               Products
             </Link>
+            
           </>
         )}
 
