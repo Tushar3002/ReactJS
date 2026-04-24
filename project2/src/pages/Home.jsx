@@ -5,16 +5,7 @@ import { deleteProduct, getProducts } from "../api/api";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
-  const handleDelete = async (id) => {
-  try {
-    await deleteProduct(id);
-    setProducts((prev) => prev.filter((p) => p.id !== id));
-    console.log("Deleted");
 
-  } catch (error) {
-    console.error(error.response?.data || error.message);
-  }
-};
   useEffect(() => {
   const fetchProducts = async () => {
     try {

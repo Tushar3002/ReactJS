@@ -11,26 +11,26 @@ const AddProduct = () => {
     description: "",
     imageUrl: "",
   });
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
-useEffect(() => {
-  const token = localStorage.getItem("token");
+  useEffect(() => {
+    const token = localStorage.getItem("token");
 
-  if (!token) {
-    return navigate("/login");
-  }
-
-  try {
-    const decoded = jwtDecode(token);
-
-    if (decoded.role !== "admin") {
-      return navigate("/"); // block normal users
+    if (!token) {
+      return navigate("/login");
     }
-  } catch (err) {
-    console.error("Invalid token");
-    navigate("/login");
-  }
-}, [navigate]);
+
+    try {
+      const decoded = jwtDecode(token);
+
+      if (decoded.role !== "admin") {
+        return navigate("/"); // block normal users
+      }
+    } catch (err) {
+      console.error("Invalid token");
+      navigate("/login");
+    }
+  }, [navigate]);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -40,11 +40,11 @@ useEffect(() => {
         price: Number(form.price),
       });
       setForm({
-  name: "",
-  price: "",
-  description: "",
-  imageUrl: "",
-});
+        name: "",
+        price: "",
+        description: "",
+        imageUrl: "",
+      });
       console.log("Created:", res.data);
       navigate("/");
     } catch (error) {
@@ -79,21 +79,16 @@ useEffect(() => {
         <input
           name="description"
           placeholder="Description"
-            value={form.description}
-          onChange={(e) =>
-            setForm({ ...form, description: e.target.value })
-          }
+          value={form.description}
+          onChange={(e) => setForm({ ...form, description: e.target.value })}
           className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         <input
           name="imageUrl"
           placeholder="Image URL"
-            value={form.imageUrl}
-
-          onChange={(e) =>
-            setForm({ ...form, imageUrl: e.target.value })
-          }
+          value={form.imageUrl}
+          onChange={(e) => setForm({ ...form, imageUrl: e.target.value })}
           className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 

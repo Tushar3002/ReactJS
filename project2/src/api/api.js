@@ -37,3 +37,10 @@ export const loginUser = (data) => api.post("/auth/login", data);
 export const registerUser = (data) => api.post("/auth/register", data);
 
 export const createOrder = (data) => api.post("/orders", data);
+export const getOrders=(data)=>{
+  return api.get("/orders")
+}
+
+export const getUser = ()=>{
+  return api.get('/auth/me')
+}

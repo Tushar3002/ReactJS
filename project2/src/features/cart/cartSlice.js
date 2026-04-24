@@ -11,6 +11,7 @@ const cartSlice = createSlice({
 
       if (existing) {
         existing.quantity += 1;
+        
       } else {
         state.push({ ...action.payload, quantity: 1 });
       }

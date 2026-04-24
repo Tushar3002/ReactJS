@@ -20,7 +20,8 @@ const navigate = useNavigate();
       navigate("/login");
 
     } catch (err) {
-      alert(err.response?.data?.message || "Error");
+      // alert(err.response?.data?.message || "Error");
+        console.log(err.response.data);
     }
   };
 

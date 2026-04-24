@@ -20,7 +20,8 @@ const { login } = useAuth();
       alert("Login successful");
       navigate("/");
     } catch (err) {
-      alert(err.response?.data?.message || "Login failed");
+      // alert(err.response?.data?.message || "Login failed");
+        console.log(err.response.data);
     }
   };
 

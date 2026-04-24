@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import { clearCart } from "../features/cart/cartSlice";
-import { api } from "../api/api";
+import { api, createOrder } from "../api/api";
 
 const Checkout = () => {
   const cartItems = useSelector((state) => state.cart);
@@ -31,12 +31,11 @@ const Checkout = () => {
         quantity: item.quantity,
       }));
 
-      const res = await api.post("/orders", { items });
+      const res = await createOrder({items})
 
       // clear cart
       dispatch(clearCart());
 
-      // 🔥 pass data to success page
       navigate("/success", {
         state: {
           total,

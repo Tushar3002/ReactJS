@@ -15,6 +15,7 @@ const ProductCard = ({ product, handleDelete }) => {
           src={product.imageUrl}
           alt={product.name}
           className="object-contain h-full w-full"
+          
         />
       </div>
       <div className="bg-slate-200 flex justify-around p-3">
