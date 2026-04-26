@@ -17,6 +17,8 @@ import AdminProducts from "../pages/AdminProducts";
 import PrivateLayout from "../layouts/PrivateLayout";
 import MyOrders from "../pages/MyOrders";
 import AdminEditProduct from "../pages/AdminEditProduct";
+import AdminDashboard from "../pages/AdminDashBoard";
+import AdminOrders from "../pages/AdminOrders";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +58,12 @@ const router = createBrowserRouter([
           {
             path:"/admin/edit/:id",
             element:<AdminEditProduct/>
+          },{
+            path:"/admin/dashboard",
+            element:<AdminDashboard/>
+          },{
+            path:"/admin/orders",
+            element:<AdminOrders/>
           }
         ],
       },

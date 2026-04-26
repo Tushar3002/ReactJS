@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAuth } from "../auth/AuthContext";
 
@@ -37,13 +37,14 @@ const Navbar = () => {
 
         {role === "admin" && (
           <>
-            <Link to="/add-product" className="hover:text-gray-300">
+            <NavLink to="/add-product" className="hover:text-gray-300">
               Add Product
-            </Link>
-            <Link to="/admin/products" className="hover:text-gray-300">
+            </NavLink>
+            <NavLink to="/admin/products" className="hover:text-gray-300">
               Products
-            </Link>
-            
+            </NavLink>
+            <NavLink to="/admin/dashboard">Dashboard</NavLink>
+            <NavLink to="/admin/orders">Orders</NavLink>
           </>
         )}
 

@@ -44,3 +44,8 @@ export const getOrders=(data)=>{
 export const getUser = ()=>{
   return api.get('/auth/me')
 }
+
+
+export const getDashboardStats = () => {
+  return api.get("/admin/dashboard");
+};

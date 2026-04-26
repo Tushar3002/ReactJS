@@ -2,6 +2,7 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import App from "../App";
+import Footer from "../components/Footer";
 
 
 const PublicLayout = () => {
@@ -9,6 +10,7 @@ const PublicLayout = () => {
     <div>
       <Navbar />
       <Outlet />
+      <Footer />  
     </div>
   )
 };
