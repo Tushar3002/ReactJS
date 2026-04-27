@@ -65,14 +65,14 @@ function AdminProducts() {
                 <td className="p-2 space-x-2">
                   <button
                     onClick={() => handleEdit(p.id)}
-                    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                    className="bg-blue-500 text-white px-2 py-1 rounded-tr-xl rounded-bl-xl hover:bg-blue-600"
                   >
                     Edit
                   </button>
 
                   <button
                     onClick={() => handleDelete(p.id)}
-                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                    className="bg-red-500 text-white px-2 py-1 rounded-tr-xl rounded-bl-xl hover:bg-red-600"
                   >
                     Delete
                   </button>

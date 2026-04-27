@@ -22,10 +22,10 @@ function AdminEditProduct() {
       try {
         const res = await getSingleProducts(id);
         setForm({
-          name: res.data.name || "",
-          price: res.data.price || "",
-          description: res.data.description || "",
-          imageUrl: res.data.imageUrlUrl || "",
+          name: res.data?.name || "",
+          price: res.data?.price || "",
+          description: res.data?.description || "",
+          imageUrl: res.data?.imageUrl || "",
         });
       } catch (err) {
         setError("Failed to load product");
@@ -80,7 +80,7 @@ function AdminEditProduct() {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Name */}
+
         <div>
           <label className="block mb-1 font-medium">Product Name</label>
           <input
@@ -93,7 +93,6 @@ function AdminEditProduct() {
           />
         </div>
 
-        {/* Price */}
         <div>
           <label className="block mb-1 font-medium">Price</label>
           <input
@@ -133,6 +132,7 @@ function AdminEditProduct() {
             <p className="text-sm text-gray-500 mb-1">Preview:</p>
             <img
               src={form.imageUrl}
+              onChange={handleChange}
               alt="preview"
               className="w-32 h-32 object-cover border rounded"
             />

@@ -24,20 +24,16 @@ const AdminDashboard = () => {
       <h1 className="text-2xl font-bold mb-6">Admin Dashboard</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-        {/* Orders */}
         <div className="bg-white shadow rounded p-4">
           <h2 className="text-gray-500">Total Orders</h2>
           <p className="text-2xl font-bold">{stats.totalOrders}</p>
         </div>
 
-        {/* Revenue */}
         <div className="bg-white shadow rounded p-4">
           <h2 className="text-gray-500">Total Revenue</h2>
           <p className="text-2xl font-bold">₹ {stats.totalRevenue}</p>
         </div>
 
-        {/* Users */}
         <div className="bg-white shadow rounded p-4">
           <h2 className="text-gray-500">Total Users</h2>
           <p className="text-2xl font-bold">{stats.totalUsers}</p>

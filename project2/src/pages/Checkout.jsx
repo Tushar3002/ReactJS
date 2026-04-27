@@ -33,7 +33,6 @@ const Checkout = () => {
 
       const res = await createOrder({items})
 
-      // clear cart
       dispatch(clearCart());
 
       navigate("/success", {

@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createProduct } from "../api/api";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
+import { useAuth } from "../auth/AuthContext";
 
 const AddProduct = () => {
   const [form, setForm] = useState({
@@ -11,46 +10,50 @@ const AddProduct = () => {
     description: "",
     imageUrl: "",
   });
+
+  const { user, loading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    if (loading) return;
 
-    if (!token) {
-      return navigate("/login");
-    }
-
-    try {
-      const decoded = jwtDecode(token);
-
-      if (decoded.role !== "admin") {
-        return navigate("/"); // block normal users
-      }
-    } catch (err) {
-      console.error("Invalid token");
+    if (!user) {
       navigate("/login");
+    } else if (user.role !== "admin") {
+      navigate("/");
     }
-  }, [navigate]);
+  }, [user, loading, navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await createProduct({
+      await createProduct({
         ...form,
         price: Number(form.price),
       });
+
       setForm({
         name: "",
         price: "",
         description: "",
         imageUrl: "",
       });
-      console.log("Created:", res.data);
+
       navigate("/");
     } catch (error) {
       console.error(error.response?.data || error.message);
     }
   };
+
+  if (loading) return <p>Loading...</p>;
+
+  const handleChange=(e)=>{
+    setForm({
+      ...form,
+      [e.target.name]:e.target.value
+    })
+  }
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -64,38 +67,35 @@ const AddProduct = () => {
           name="name"
           placeholder="Product Name"
           value={form.name}
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
-          className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onChange={handleChange}
+          className="w-full p-2 border rounded-lg"
         />
 
         <input
           name="price"
           placeholder="Price"
           value={form.price}
-          onChange={(e) => setForm({ ...form, price: e.target.value })}
-          className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onChange={handleChange}
+          className="w-full p-2 border rounded-lg"
         />
 
         <input
           name="description"
           placeholder="Description"
           value={form.description}
-          onChange={(e) => setForm({ ...form, description: e.target.value })}
-          className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onChange={handleChange}
+          className="w-full p-2 border rounded-lg"
         />
 
         <input
           name="imageUrl"
           placeholder="Image URL"
           value={form.imageUrl}
-          onChange={(e) => setForm({ ...form, imageUrl: e.target.value })}
-          className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onChange={handleChange}
+          className="w-full p-2 border rounded-lg"
         />
 
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200"
-        >
+        <button className="w-full bg-blue-600 text-white py-2 rounded-lg">
           Add Product
         </button>
       </form>
@@ -104,3 +104,25 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
+
+
+
+// import {z} from 'zod'
+// import { useForm } from 'react-hook-form';
+// import { zodResolver } from '@hookform/resolvers/zod';
+
+
+// const schema=z.object({
+//   name:z.string().min(2,"Product Name required"),
+//     price:z.coerce.number().positive("Price should be positive"),
+//     description:z.string().optional(),
+//     imageUrl:z.string().url().optional()
+// });
+
+//   const {
+//     register,
+//     handleSubmit,
+//     formState: { errors, isSubmitting },
+//   } = useForm({
+//     resolver: zodResolver(schema),
+//   });

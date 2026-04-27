@@ -17,8 +17,7 @@ useEffect(() => {
       localStorage.removeItem("token");
     }
   }
-
-  setLoading(false); 
+  setLoading(false);
 }, []);
   const login = (data) => {
     localStorage.setItem("token", data.token);

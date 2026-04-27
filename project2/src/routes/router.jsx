@@ -63,7 +63,7 @@ const router = createBrowserRouter([
             element:<AdminDashboard/>
           },{
             path:"/admin/orders",
-            element:<AdminOrders/>
+            element:<AdminOrders />
           }
         ],
       },

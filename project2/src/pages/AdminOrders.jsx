@@ -44,15 +44,14 @@ const AdminOrders = () => {
 
           {/* Items */}
           <div className="mt-2">
-            {order.OrderItems.map((item) => (
+            {order.OrderItems?.map((item) => (
               <div key={item.id} className="flex justify-between text-sm">
-                <span>{item.Product.name} x {item.quantity}</span>
+                <span>{item.Product?.name} x {item.quantity}</span>
                 <span>₹ {item.price}</span>
               </div>
             ))}
           </div>
 
-          {/* Status Dropdown */}
           <div className="mt-3 flex items-center gap-3">
             <span>Status:</span>
 

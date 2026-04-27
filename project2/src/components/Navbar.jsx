@@ -43,8 +43,8 @@ const Navbar = () => {
             <NavLink to="/admin/products" className="hover:text-gray-300">
               Products
             </NavLink>
-            <NavLink to="/admin/dashboard">Dashboard</NavLink>
-            <NavLink to="/admin/orders">Orders</NavLink>
+            <NavLink to="/admin/dashboard" className="hover:text-gray-300">Dashboard</NavLink>
+            <NavLink to="/admin/orders" className="hover:text-gray-300">Orders</NavLink>
           </>
         )}
 
