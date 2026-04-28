@@ -19,6 +19,7 @@ import MyOrders from "../pages/MyOrders";
 import AdminEditProduct from "../pages/AdminEditProduct";
 import AdminDashboard from "../pages/AdminDashBoard";
 import AdminOrders from "../pages/AdminOrders";
+import WishList from "../pages/WishList";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path:"/wishlist",
+        element:<WishList/>
       },
       {
         path: "/checkout",

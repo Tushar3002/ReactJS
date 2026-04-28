@@ -8,12 +8,11 @@ import router from "./routes/router";
 function App() {
   return (
     <>
-      <AuthProvider>
-        <Provider store={store}>
+      <Provider store={store}>
+        <AuthProvider>
           <RouterProvider router={router} />
-        </Provider>
-      </AuthProvider>
-      
+        </AuthProvider>
+      </Provider>
     </>
   );
 }

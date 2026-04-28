@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
-import { deleteProduct, getProducts } from "../api/api";
+import { deleteProduct, getProducts, getWish } from "../api/api";
+import { useDispatch } from "react-redux";
+import { setWishlist } from "../features/cart/wishlistSlice";
 
 
 const Home = () => {
@@ -20,6 +22,21 @@ const Home = () => {
 
   fetchProducts();
 }, []);
+
+const dispatch=useDispatch()
+
+  useEffect(()=>{
+    const wish=async()=>{
+      try {
+        const res=await getWish()
+      dispatch(setWishlist(res.data.wishlist))
+      } catch (error) {
+        console.log(error);
+        
+      }
+    }
+    wish()
+  },[])
 
   return (
     <div className="min-h-screen max-w-6xl mx-auto px-4 py-4">

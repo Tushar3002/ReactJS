@@ -31,6 +31,10 @@ const Navbar = () => {
             My Orders
             
           </Link>
+          <Link to="/wishlist" className="relative hover:text-gray-300">
+            WishList
+            
+          </Link>
           </>
           
         )}
@@ -48,7 +52,7 @@ const Navbar = () => {
           </>
         )}
 
-        {/* Auth */}
+ 
         {user ? (
           <button
             onClick={logout}

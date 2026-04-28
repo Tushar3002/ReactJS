@@ -45,7 +45,20 @@ export const getUser = ()=>{
   return api.get('/auth/me')
 }
 
-
 export const getDashboardStats = () => {
   return api.get("/admin/dashboard");
 };
+
+//wishList
+
+export const addWish=(productId)=>{
+  return api.post("/wishlist",{productId})
+}
+
+export const getWish=()=>{
+  return api.get("/wishlist")
+}
+
+export const removeWish=(productId)=>{
+  return api.delete(`/wishlist/${productId}`)
+}
