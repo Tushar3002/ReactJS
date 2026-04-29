@@ -20,6 +20,9 @@ import AdminEditProduct from "../pages/AdminEditProduct";
 import AdminDashboard from "../pages/AdminDashBoard";
 import AdminOrders from "../pages/AdminOrders";
 import WishList from "../pages/WishList";
+import CheckoutRoute from "./CheckoutRoute";
+import SuccessGuard from "./SuccessGuard";
+import AdminUsersPage from "../pages/AdminUsersPage";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +68,9 @@ const router = createBrowserRouter([
           },{
             path:"/admin/orders",
             element:<AdminOrders />
+          },{
+            path:"/admin/users",
+            element:<AdminUsersPage/>
           }
         ],
       },
@@ -83,11 +89,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/checkout",
-        element: <Checkout />,
+        element: (
+          <CheckoutRoute>
+            <Checkout />,
+          </CheckoutRoute>
+        )
       },
       {
         path: "/success",
-        element: <Success />,
+        element: (
+          <SuccessGuard>
+            <Success />,
+          </SuccessGuard>
+        )
       },
       { path: "/orders", element: <MyOrders /> },
     ],
