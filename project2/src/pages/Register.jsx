@@ -8,6 +8,8 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
+    phone:"",
+    address:""
   });
 const navigate = useNavigate();
   const handleSubmit = async (e) => {
@@ -25,6 +27,13 @@ const navigate = useNavigate();
     }
   };
 
+  const handleChange=(e)=>{
+    setForm({
+      ...form,
+      [e.target.name]:e.target.value
+    })
+  }
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <form
@@ -34,30 +43,41 @@ const navigate = useNavigate();
         <h2 className="text-2xl font-semibold text-center">Register</h2>
 
         <input
+        name="name"
           placeholder="Name"
           value={form.name}
-          onChange={(e) =>
-            setForm({ ...form, name: e.target.value })
-          }
+          onChange={handleChange}
           className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         <input
+        name="email"
           placeholder="Email"
           value={form.email}
-          onChange={(e) =>
-            setForm({ ...form, email: e.target.value })
-          }
+          onChange={handleChange}
           className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         <input
+        name="password"
           placeholder="Password"
           type="password"
           value={form.password}
-          onChange={(e) =>
-            setForm({ ...form, password: e.target.value })
-          }
+          onChange={handleChange}
+          className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <input
+          placeholder="Phone"
+          name="phone"
+          value={form.phone}
+          onChange={handleChange}
+          className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <input
+          name="address"
+          placeholder="Address"
+          value={form.address}
+          onChange={handleChange}
           className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
@@ -73,3 +93,7 @@ const navigate = useNavigate();
 };
 
 export default Register;
+
+// onChange={(e) =>
+//             setForm({ ...form, password: e.target.value })
+//           }

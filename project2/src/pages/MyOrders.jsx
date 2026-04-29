@@ -6,8 +6,8 @@ const MyOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [curUser,setCurUser]=useState("")
-  const {user}= useAuth()
+  const [curUser, setCurUser] = useState("");
+  const { user } = useAuth();
   useEffect(() => {
     const fetchOrders = async () => {
       try {
@@ -15,7 +15,6 @@ const MyOrders = () => {
         setOrders(res.data);
         console.log(res.data);
         console.log(user.id);
-        
       } catch (err) {
         setError("Failed to load orders");
         console.error(err.response?.data || err.message);
@@ -27,21 +26,21 @@ const MyOrders = () => {
     fetchOrders();
   }, []);
 
-  useEffect(()=>{
-    const singleProduct=async()=>{
+  useEffect(() => {
+    const singleProduct = async () => {
       try {
-        const res=await getUser(user.id)
+        const res = await getUser(user.id);
         console.log(res.data);
-        setCurUser(res.data)
+        setCurUser(res.data);
       } catch (err) {
         setError("Failed to load orders");
         console.error(err.response?.data || err.message);
       } finally {
         setLoading(false);
       }
-    }
-    singleProduct()
-  },[])
+    };
+    singleProduct();
+  }, []);
 
   if (loading) {
     return <p className="p-6">Loading orders...</p>;
@@ -64,7 +63,18 @@ const MyOrders = () => {
           <h2 className="font-semibold">Order #{order.id}</h2>
 
           <p className="text-sm text-gray-600">
-            Status: <span className="font-medium">{order.status}</span>
+            Status:{" "}
+            <span
+              className={`font-medium ${
+                order?.status === "completed"
+                  ? "text-green-600"
+                  : order?.status === "pending"
+                    ? "text-red-600"
+                    : "text-gray-600"
+              }`}
+            >
+              {order?.status}
+            </span>
           </p>
 
           <p className="font-medium">Total: ₹ {order.totalPrice.toFixed(2)}</p>
@@ -85,9 +95,7 @@ const MyOrders = () => {
                   <p className="font-medium">
                     {item.Product?.name || "Unknown Product"}
                   </p>
-                  <p className="text-sm text-gray-500">
-                    Qty: {item.quantity}
-                  </p>
+                  <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
                   <p className="text-sm">₹ {item.price}</p>
                 </div>
               </div>

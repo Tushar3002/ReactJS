@@ -1,7 +1,16 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import { clearCart } from "../features/cart/cartSlice";
 
 const Success = () => {
   const { state } = useLocation();
+
+  const dispatch=useDispatch()
+
+  useEffect(()=>{
+    dispatch(clearCart())
+  },[])
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">

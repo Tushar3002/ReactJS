@@ -31,7 +31,7 @@ const AdminDashboard = () => {
 
         <div className="bg-white shadow rounded p-4">
           <h2 className="text-gray-500">Total Revenue</h2>
-          <p className="text-2xl font-bold">₹ {stats.totalRevenue}</p>
+          <p className="text-2xl font-bold">₹ {stats.totalRevenue.toFixed(2)}</p>
         </div>
 
         <div className="bg-white shadow rounded p-4">

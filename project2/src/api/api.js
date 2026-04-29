@@ -4,6 +4,13 @@ export const api = axios.create({
   baseURL: "http://localhost:5000/api",
 });
 
+
+
+// axios.get("/api/data", {
+//   headers: { Authorization: `Bearer ${token}` }
+// });
+
+//OR
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
 
@@ -12,6 +19,9 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
+
+
+
 
 export const getProducts = () => {
   return api.get("/products");
@@ -45,6 +55,10 @@ export const getUser = ()=>{
   return api.get('/auth/me')
 }
 
+export const getAllUser = ()=>{
+  return api.get('/admin/allUsers')
+}
+
 export const getDashboardStats = () => {
   return api.get("/admin/dashboard");
 };
@@ -62,3 +76,4 @@ export const getWish=()=>{
 export const removeWish=(productId)=>{
   return api.delete(`/wishlist/${productId}`)
 }
+

@@ -11,6 +11,8 @@ function AdminEditProduct() {
     price: "",
     description: "",
     imageUrl: "",
+    stock: "",
+        category: "",
   });
 
   const [loading, setLoading] = useState(true);
@@ -26,6 +28,8 @@ function AdminEditProduct() {
           price: res.data?.price || "",
           description: res.data?.description || "",
           imageUrl: res.data?.imageUrl || "",
+          stock:res.data?.stock ||"",
+        category:res.data?.category ||"",
         });
       } catch (err) {
         setError("Failed to load product");
@@ -115,6 +119,21 @@ function AdminEditProduct() {
             className="w-full border p-2 rounded"
           />
         </div>
+
+        <input
+          name="stock"
+          placeholder="STOCK"
+          value={form.stock}
+          onChange={handleChange}
+          className="w-full p-2 border rounded-lg"
+        />
+        <input
+          name="category"
+          placeholder="CTEGORY"
+          value={form.category}
+          onChange={handleChange}
+          className="w-full p-2 border rounded-lg"
+        />
 
         <div>
           <label className="block mb-1 font-medium">imageUrl URL</label>

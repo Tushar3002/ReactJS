@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -8,13 +8,13 @@ import { api, createOrder } from "../api/api";
 const Checkout = () => {
   const cartItems = useSelector((state) => state.cart);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
 
   const [loading, setLoading] = useState(false);
 
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
-    0
+    0,
   );
 
   const handlePlaceOrder = async () => {
@@ -31,9 +31,7 @@ const Checkout = () => {
         quantity: item.quantity,
       }));
 
-      const res = await createOrder({items})
-
-      dispatch(clearCart());
+      const res = await createOrder({ items });
 
       navigate("/success", {
         state: {
@@ -42,6 +40,7 @@ const Checkout = () => {
         },
       });
 
+      
     } catch (err) {
       console.error(err);
       alert("Order failed");

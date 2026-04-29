@@ -9,6 +9,8 @@ const AddProduct = () => {
     price: "",
     description: "",
     imageUrl: "",
+    stock: "",
+    category: "",
   });
 
   const { user, loading } = useAuth();
@@ -38,6 +40,8 @@ const AddProduct = () => {
         price: "",
         description: "",
         imageUrl: "",
+        stock: "",
+        category: "",
       });
 
       navigate("/");
@@ -48,12 +52,12 @@ const AddProduct = () => {
 
   if (loading) return <p>Loading...</p>;
 
-  const handleChange=(e)=>{
+  const handleChange = (e) => {
     setForm({
       ...form,
-      [e.target.name]:e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -94,6 +98,20 @@ const AddProduct = () => {
           onChange={handleChange}
           className="w-full p-2 border rounded-lg"
         />
+        <input
+          name="stock"
+          placeholder="STOCK"
+          value={form.stock}
+          onChange={handleChange}
+          className="w-full p-2 border rounded-lg"
+        />
+        <input
+          name="category"
+          placeholder="CTEGORY"
+          value={form.category}
+          onChange={handleChange}
+          className="w-full p-2 border rounded-lg"
+        />
 
         <button className="w-full bg-blue-600 text-white py-2 rounded-lg">
           Add Product
@@ -105,12 +123,9 @@ const AddProduct = () => {
 
 export default AddProduct;
 
-
-
 // import {z} from 'zod'
 // import { useForm } from 'react-hook-form';
 // import { zodResolver } from '@hookform/resolvers/zod';
-
 
 // const schema=z.object({
 //   name:z.string().min(2,"Product Name required"),

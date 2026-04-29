@@ -6,15 +6,19 @@ import { addToCart } from "../features/cart/cartSlice";
 
 const Product = () => {
   const { id } = useParams(); 
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState({});
   const cartItems = useSelector((state) => state.cart);
+console.log(cartItems);
 
-  const isInCart = cartItems.some((item) => item.id === product.id);
+  const isInCart = cartItems.some((item) => item.id === product?.id);
+ 
   const dispatch = useDispatch();
 
   
 
   useEffect(() => {
+    console.log("aaa",product);
+    
     const fetchProduct = async () => {
       const res = await api.get(`/products/${id}`);
       setProduct(res.data);
@@ -22,8 +26,10 @@ const Product = () => {
 
     fetchProduct();
   }, [id]);
-
+        console.log("aaa2",product);
   if (!product) {
+
+
     return <h2>Loading...</h2>;
   }
 
