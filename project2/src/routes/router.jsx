@@ -23,6 +23,9 @@ import WishList from "../pages/WishList";
 import CheckoutRoute from "./CheckoutRoute";
 import SuccessGuard from "./SuccessGuard";
 import AdminUsersPage from "../pages/AdminUsersPage";
+import About from "../pages/Static/About";
+import Contact from "../pages/Static/Contact";
+import Privacy from "../pages/Static/Policy";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +38,18 @@ const router = createBrowserRouter([
       {
         path: "/product/:id",
         element: <Product />,
+      },
+      {
+        path:"/about",
+        element:<About/>
+      },
+      {
+        path:"/contact",
+        element:<Contact/>
+      },
+      {
+        path:"/privacy",
+        element:<Privacy/>
       },
 
       {
