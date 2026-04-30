@@ -31,6 +31,8 @@ function AdminProducts() {
     const fetchProducts = async () => {
       try {
         const res = await getProducts();
+        console.log("Priducts",res.data);
+        
         setProducts(res.data);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -51,6 +53,9 @@ function AdminProducts() {
           <thead className="bg-gray-200">
             <tr>
               <th className="p-2 text-left">Name</th>
+              <th className="p-2 text-left">Image</th>
+              <th className="p-2 text-left">Category</th>
+              <th className="p-2 text-left">Stock</th>
               <th className="p-2 text-left">Price</th>
               <th className="p-2 text-left">Actions</th>
             </tr>
@@ -59,7 +64,11 @@ function AdminProducts() {
           <tbody>
             {products.map((p) => (
               <tr key={p.id} className="border-t">
+                
                 <td className="p-2">{p.name}</td>
+                <td className="p-2"><img className="w-16 h-16 object-contain rounded-sm" src={p.imageUrl} /></td>
+                <td className="p-2">{p.category}</td>
+                <td className="p-2">{p.stock}</td>
                 <td className="p-2">₹ {p.price}</td>
 
                 <td className="p-2 space-x-2">

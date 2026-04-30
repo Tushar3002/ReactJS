@@ -55,9 +55,16 @@ export const getUser = ()=>{
   return api.get('/auth/me')
 }
 
+
+
 export const getAllUser = ()=>{
   return api.get('/admin/allUsers')
 }
+
+export const deleteUser = (userId)=>{
+  return api.delete(`/admin/deleteUser/${userId}`)
+}
+
 
 export const getDashboardStats = () => {
   return api.get("/admin/dashboard");

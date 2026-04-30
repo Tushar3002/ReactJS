@@ -86,14 +86,14 @@ const MyOrders = () => {
                 className="flex gap-4 items-center border-t pt-2"
               >
                 <img
-                  src={item.Product?.imageUrl}
-                  alt={item.Product?.name}
+                  src={item.imageUrl}
+                  alt={item.productName}
                   className="w-16 h-16 object-cover rounded border"
                 />
 
                 <div>
                   <p className="font-medium">
-                    {item.Product?.name || "Unknown Product"}
+                    {item?.productName || "Unknown Product"}
                   </p>
                   <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
                   <p className="text-sm">₹ {item.price}</p>

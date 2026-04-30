@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import {  editProduct, getSingleProducts } from "../api/api";
+import { editProduct, getSingleProducts } from "../api/api";
 
 function AdminEditProduct() {
   const { id } = useParams();
@@ -12,7 +12,7 @@ function AdminEditProduct() {
     description: "",
     imageUrl: "",
     stock: "",
-        category: "",
+    category: "",
   });
 
   const [loading, setLoading] = useState(true);
@@ -28,8 +28,8 @@ function AdminEditProduct() {
           price: res.data?.price || "",
           description: res.data?.description || "",
           imageUrl: res.data?.imageUrl || "",
-          stock:res.data?.stock ||"",
-        category:res.data?.category ||"",
+          stock: res.data?.stock || "",
+          category: res.data?.category || "",
         });
       } catch (err) {
         setError("Failed to load product");
@@ -78,13 +78,10 @@ function AdminEditProduct() {
       <h1 className="text-2xl font-bold mb-4">Edit Product</h1>
 
       {error && (
-        <div className="mb-4 text-red-600 bg-red-100 p-2 rounded">
-          {error}
-        </div>
+        <div className="mb-4 text-red-600 bg-red-100 p-2 rounded">{error}</div>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
-
         <div>
           <label className="block mb-1 font-medium">Product Name</label>
           <input
@@ -127,13 +124,19 @@ function AdminEditProduct() {
           onChange={handleChange}
           className="w-full p-2 border rounded-lg"
         />
-        <input
+        <select
           name="category"
-          placeholder="CTEGORY"
           value={form.category}
           onChange={handleChange}
-          className="w-full p-2 border rounded-lg"
-        />
+          className="w-full border p-2 mb-4 rounded"
+        >
+          <option value="toy">TOY</option>
+          <option value="electronic">ELECTRONIC</option>
+          <option value="furniture">FURNITURE</option>
+          <option value="fashion">FASHION</option>
+          <option value="watch">WATCH</option>
+          <option value="cosmetic">COSMETIC</option>
+        </select>
 
         <div>
           <label className="block mb-1 font-medium">imageUrl URL</label>

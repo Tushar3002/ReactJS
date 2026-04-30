@@ -105,13 +105,26 @@ const AddProduct = () => {
           onChange={handleChange}
           className="w-full p-2 border rounded-lg"
         />
-        <input
+        {/* <input
           name="category"
           placeholder="CTEGORY"
           value={form.category}
           onChange={handleChange}
           className="w-full p-2 border rounded-lg"
-        />
+        /> */}
+
+        <select
+        name="category"
+          value={form.category}
+          onChange={handleChange}
+          className="w-full border p-2 mb-4 rounded"
+        >
+          <option value="toy">TOY</option>
+          <option value="electronic">ELECTRONIC</option>
+          <option value="furniture">FURNITURE</option>
+          <option value="fashion">FASHION</option>
+          <option value="watch">WATCH</option>
+        </select>
 
         <button className="w-full bg-blue-600 text-white py-2 rounded-lg">
           Add Product

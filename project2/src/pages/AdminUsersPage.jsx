@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getAllUser } from '../api/api';
+import { deleteUser, getAllUser } from '../api/api';
 
 function AdminUsersPage() {
     const [users, setUsers] = useState('')
@@ -14,6 +14,17 @@ function AdminUsersPage() {
             
         }
 
+    }
+
+    const handleDeleteUser=async(id)=>{
+      try {
+        await deleteUser(id)
+        setUsers((prev)=>prev.filter((val)=>val.id!==id))
+        console.log("USer Deleted");
+        
+      } catch (error) {
+        console.error(error)
+      }
     }
     useEffect(()=>{
         fetchAllUsers()
@@ -31,6 +42,7 @@ function AdminUsersPage() {
               <th className="p-2 text-left">Name</th>
               <th className="p-2 text-left">Email</th>
               <th className="p-2 text-left">Role</th>
+              <th className="p-2 text-left">Delete</th>
             </tr>
           </thead>
 
@@ -41,7 +53,7 @@ function AdminUsersPage() {
                 <td className="p-2">{u.name}</td>
                 <td className="p-2">{u.email}</td>
                 <td className="p-2">{u.role}</td>
-
+                <td className='p-2'><button onClick={()=>handleDeleteUser(u.id)} className='bg-amber-700  rounded-lg'>DELETE</button></td>
                 
               </tr>
             ))}
