@@ -13,7 +13,7 @@ const MyOrders = () => {
       try {
         const res = await getOrders();
         setOrders(res.data);
-        console.log(res.data);
+        console.log("Orders",res.data);
         console.log(user.id);
       } catch (err) {
         setError("Failed to load orders");
@@ -66,7 +66,7 @@ const MyOrders = () => {
             Status:{" "}
             <span
               className={`font-medium ${
-                order?.status === "completed"
+                order?.status === "delivered"
                   ? "text-green-600"
                   : order?.status === "pending"
                     ? "text-red-600"
@@ -77,7 +77,10 @@ const MyOrders = () => {
             </span>
           </p>
 
+          <p className="text-xs text-gray-600">Ordered At : {order?.createdAt}</p>
+          {order?.deliveredAt && <p className="text-xs text-gray-600 ">Delivered At : {order?.status === "delivered" ? order?.deliveredAt : ""}</p>}
           <p className="font-medium">Total: ₹ {order.totalPrice.toFixed(2)}</p>
+          <p className="font-medium">Payment Method :  {order?.paymentMethod}</p>
 
           <div className="mt-3 space-y-2">
             {order.OrderItems?.map((item) => (

@@ -55,7 +55,9 @@ export const getUser = ()=>{
   return api.get('/auth/me')
 }
 
-
+export const updateUserRole = (id,data)=>{
+  return api.put(`/admin/updateUser/${id}`,data)
+}
 
 export const getAllUser = ()=>{
   return api.get('/admin/allUsers')

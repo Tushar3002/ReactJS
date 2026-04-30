@@ -8,8 +8,7 @@ const AdminOrders = () => {
     try {
       const res = await api.get("/orders/admin");
       setOrders(res.data);
-      console.log("FETCH",res.data);
-      
+      console.log("FETCH", res.data);
     } catch (err) {
       console.error(err);
     }
@@ -22,20 +21,26 @@ const AdminOrders = () => {
   const updateStatus = async (id, status) => {
     try {
       await api.put(`/orders/${id}/status`, { status });
-      fetchOrders(); // refresh
+      console.log("Status", status);
+      if (status === "delivered") {
+        updatePaymentStatus(id, "paid");
+
+      }
+      fetchOrders(); 
     } catch (err) {
       console.error(err);
     }
   };
 
-  const updatePaymentStatus= async(id,paymentStatus)=>{
+
+  const updatePaymentStatus = async (id, paymentStatus) => {
     try {
-      await api.put(`/orders/${id}/paymentStatus`,{paymentStatus})
-      fetchOrders()
+      await api.put(`/orders/${id}/paymentStatus`, { paymentStatus });
+      fetchOrders();
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   return (
     <div className="p-6">
@@ -43,10 +48,13 @@ const AdminOrders = () => {
 
       {orders.map((order) => (
         <div key={order.id} className="bg-white p-4 mb-4 shadow rounded">
-          
           <div className="flex justify-between">
-            <p><b>Order ID:</b> {order.id}</p>
-            <p><b>Total:</b> ₹ {order.totalPrice}</p>
+            <p>
+              <b>Order ID:</b> {order.id}
+            </p>
+            <p>
+              <b>Total:</b> ₹ {order.totalPrice}
+            </p>
           </div>
 
           <p className="text-sm text-gray-500">
@@ -57,7 +65,9 @@ const AdminOrders = () => {
           <div className="mt-2">
             {order.OrderItems?.map((item) => (
               <div key={item.id} className="flex justify-between text-sm">
-                <span>{item.Product?.name} x {item.quantity}</span>
+                <span>
+                  {item.Product?.name} x {item.quantity}
+                </span>
                 <span>₹ {item.price}</span>
               </div>
             ))}
@@ -69,32 +79,31 @@ const AdminOrders = () => {
             <select
               value={order.status}
               onChange={(e) => updateStatus(order.id, e.target.value)}
-              className="border p-1 rounded"
+              disabled={order.status === "delivered"} // 
+              className={`border p-1 rounded ${
+                order.status === "delivered"
+                  ? "bg-gray-200 cursor-not-allowed"
+                  : ""
+              }`}
             >
               <option value="pending">Pending</option>
               <option value="shipped">Shipped</option>
               <option value="delivered">Delivered</option>
             </select>
-
-            
-          </div>
-
-          <div className="mt-3 flex items-center gap-3">
-            <span>Payment : </span>
-
-            <select
-              value={order.paymentStatus}
-              onChange={(e) => updatePaymentStatus(order.id, e.target.value)}
-              className="border p-1 rounded"
-            >
-              <option value="pending">Pending</option>
-              <option value="completed">Completed</option>
-            </select> 
           </div>
           <div>
-            <span>Payment Method : </span><span> {order.paymentMethod}</span>
+            Delieverd AT : {order.deliveredAt} 
           </div>
+          <div className="my-3 flex items-center gap-3">
+            <span>Payment : </span>
 
+            
+            <span className="text-green-400">{order.paymentStatus}</span>
+          </div>
+          <div>
+            <span>Payment Method : </span>
+            <span> {order.paymentMethod}</span>
+          </div>
         </div>
       ))}
     </div>

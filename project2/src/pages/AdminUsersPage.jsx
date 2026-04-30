@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { deleteUser, getAllUser } from '../api/api';
+import { deleteUser, getAllUser, updateUserRole } from '../api/api';
 
 function AdminUsersPage() {
-    const [users, setUsers] = useState('')
+    const [users, setUsers] = useState([])
     const fetchAllUsers=async()=>{
         try {
             const res=await getAllUser()
@@ -14,6 +14,16 @@ function AdminUsersPage() {
             
         }
 
+    }
+
+    const updateRole=async(id,role)=>{
+      try {
+        await updateUserRole(id,{role})
+        fetchAllUsers()
+      } catch (error) {
+        console.log(error);
+        
+      }
     }
 
     const handleDeleteUser=async(id)=>{
@@ -52,7 +62,12 @@ function AdminUsersPage() {
                 <td className="p-2">{u.id}</td>
                 <td className="p-2">{u.name}</td>
                 <td className="p-2">{u.email}</td>
-                <td className="p-2">{u.role}</td>
+                <td className="p-2">
+                  <select value={u.role} onChange={(e)=>updateRole(u.id,e.target.value)}>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </td>
                 <td className='p-2'><button onClick={()=>handleDeleteUser(u.id)} className='bg-amber-700  rounded-lg'>DELETE</button></td>
                 
               </tr>
