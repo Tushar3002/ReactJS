@@ -8,6 +8,8 @@ const AdminOrders = () => {
     try {
       const res = await api.get("/orders/admin");
       setOrders(res.data);
+      console.log("FETCH",res.data);
+      
     } catch (err) {
       console.error(err);
     }
@@ -25,6 +27,15 @@ const AdminOrders = () => {
       console.error(err);
     }
   };
+
+  const updatePaymentStatus= async(id,paymentStatus)=>{
+    try {
+      await api.put(`/orders/${id}/paymentStatus`,{paymentStatus})
+      fetchOrders()
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <div className="p-6">
@@ -61,9 +72,27 @@ const AdminOrders = () => {
               className="border p-1 rounded"
             >
               <option value="pending">Pending</option>
-              <option value="completed">Completed</option>
               <option value="shipped">Shipped</option>
+              <option value="delivered">Delivered</option>
             </select>
+
+            
+          </div>
+
+          <div className="mt-3 flex items-center gap-3">
+            <span>Payment : </span>
+
+            <select
+              value={order.paymentStatus}
+              onChange={(e) => updatePaymentStatus(order.id, e.target.value)}
+              className="border p-1 rounded"
+            >
+              <option value="pending">Pending</option>
+              <option value="completed">Completed</option>
+            </select> 
+          </div>
+          <div>
+            <span>Payment Method : </span><span> {order.paymentMethod}</span>
           </div>
 
         </div>
