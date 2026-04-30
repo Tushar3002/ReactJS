@@ -9,7 +9,8 @@ const Checkout = () => {
   const cartItems = useSelector((state) => state.cart);
   const navigate = useNavigate();
 
-
+  const [address, setAddress] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("COD");
   const [loading, setLoading] = useState(false);
 
   const total = cartItems.reduce(
@@ -23,6 +24,11 @@ const Checkout = () => {
       return;
     }
 
+    if (!address.trim()) {
+      alert("Please enter shipping address");
+      return;
+    }
+
     try {
       setLoading(true);
 
@@ -31,7 +37,11 @@ const Checkout = () => {
         quantity: item.quantity,
       }));
 
-      const res = await createOrder({ items });
+      const res = await createOrder({
+        items,
+        shippingAddress: address,
+        paymentMethod,
+      });
 
       navigate("/success", {
         state: {
@@ -39,8 +49,6 @@ const Checkout = () => {
           orderId: res.data.orderId,
         },
       });
-
-      
     } catch (err) {
       console.error(err);
       alert("Order failed");
@@ -54,6 +62,8 @@ const Checkout = () => {
       <h1 className="text-2xl font-bold mb-4">Checkout</h1>
 
       <input
+        value={address}
+        onChange={(e) => setAddress(e.target.value)}
         placeholder="Enter Address"
         className="w-full border p-2 mb-4 rounded"
       />
@@ -85,6 +95,14 @@ const Checkout = () => {
           {loading ? "Placing Order..." : "Place Order"}
         </button>
       </div>
+      <select
+        value={paymentMethod}
+        onChange={(e) => setPaymentMethod(e.target.value)}
+        className="w-full border p-2 mb-4 rounded"
+      >
+        <option value="COD">Cash on Delivery</option>
+        <option value="UPI">UPI</option>
+      </select>
     </div>
   );
 };
