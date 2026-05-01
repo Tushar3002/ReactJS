@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
-import { api, getOrders, getSingleProducts, getUser } from "../api/api";
+import { getOrders } from "../api/api";
 import { useAuth } from "../auth/AuthContext";
+import { Link } from "react-router-dom";
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [curUser, setCurUser] = useState("");
+
   const { user } = useAuth();
+
   useEffect(() => {
     const fetchOrders = async () => {
       try {
         const res = await getOrders();
         setOrders(res.data);
-        console.log("Orders",res.data);
-        console.log(user.id);
+        console.log("Fetch Orders", res.data);
+        console.log("USERS", user);
       } catch (err) {
         setError("Failed to load orders");
         console.error(err.response?.data || err.message);
@@ -26,24 +28,8 @@ const MyOrders = () => {
     fetchOrders();
   }, []);
 
-  useEffect(() => {
-    const singleProduct = async () => {
-      try {
-        const res = await getUser(user.id);
-        console.log("NOW",res.data);
-        setCurUser(res.data);
-      } catch (err) {
-        setError("Failed to load orders");
-        console.error(err.response?.data || err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    singleProduct();
-  }, []);
-
   if (loading) {
-    return <p className="p-6">Loading orders...</p>;
+    return <p className="p-6 text-gray-500">Loading orders...</p>;
   }
 
   if (error) {
@@ -51,42 +37,67 @@ const MyOrders = () => {
   }
 
   if (orders.length === 0) {
-    return <p className="p-6">No orders found</p>;
+    return <p className="p-6 text-gray-500">No orders found</p>;
   }
 
   return (
-    <div className="p-6">
-      <h1 className="text-xl font-bold mb-4">Name : {curUser.name}</h1>
+    <div className="max-w-5xl mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-6">My Orders ({user?.name})</h1>
 
       {orders.map((order) => (
-        <div key={order.id} className="border p-4 mb-4 rounded">
-          <h2 className="font-semibold">Order #{order.id}</h2>
+        <div key={order.id} className="bg-white shadow rounded-xl p-4 mb-6">
+          {/* Header */}
+          <div className="flex justify-between items-center mb-2">
+            <h2 className="font-semibold text-lg">Order #{order.id}</h2>
 
-          <p className="text-sm text-gray-600">
-            Status:{" "}
             <span
-              className={`font-medium ${
-                order?.status === "delivered"
+              className={`text-sm font-medium ${
+                order.status === "delivered"
                   ? "text-green-600"
-                  : order?.status === "pending"
+                  : order.status === "pending"
                     ? "text-red-600"
                     : "text-gray-600"
               }`}
             >
-              {order?.status}
+              {order.status}
             </span>
+          </div>
+
+          {/* Dates */}
+          <p className="text-xs text-gray-500">
+            Ordered: {new Date(order.createdAt).toLocaleString()}
           </p>
 
-          <p className="text-xs text-gray-600">Ordered At : {order?.createdAt}</p>
-          {order?.deliveredAt && <p className="text-xs text-gray-600 ">Delivered At : {order?.status === "delivered" ? order?.deliveredAt : ""}</p>}
-          <p className="font-medium">Total: ₹ {order.totalPrice.toFixed(2)}</p>
-          <p className="font-medium">Payment Method :  {order?.paymentMethod}</p>
+          {order.status === "delivered" && (
+            <p className="text-xs text-gray-500">
+              Delivered: {new Date(order.deliveredAt).toLocaleString()}
+            </p>
+          )}
 
-          <div className="mt-3 space-y-2">
+          {/* Info */}
+          <div className="flex justify-between mt-2 text-sm">
+            <p className="font-medium">
+              Total: ₹ {order.totalPrice.toFixed(2)}
+            </p>
+            <p>Payment: {order.paymentMethod || "N/A"}</p>
+          </div>
+
+          <div>
+            <Link
+              to={`/orders/${order.id}`}
+              state={{ order }}
+              className="text-blue-500 text-sm"
+            >
+              View Details
+            </Link>
+          </div>
+
+          {/* Items */}
+          <div className="mt-4 space-y-3">
             {order.OrderItems?.map((item) => (
               <div
                 key={item.id}
-                className="flex gap-4 items-center border-t pt-2"
+                className="flex gap-4 items-center border-t pt-3"
               >
                 <img
                   src={item.imageUrl}
@@ -94,13 +105,12 @@ const MyOrders = () => {
                   className="w-16 h-16 object-cover rounded border"
                 />
 
-                <div>
-                  <p className="font-medium">
-                    {item?.productName || "Unknown Product"}
-                  </p>
+                <div className="flex-1">
+                  <p className="font-medium">{item.productName}</p>
                   <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
-                  <p className="text-sm">₹ {item.price}</p>
                 </div>
+
+                <p className="font-medium">₹ {item.price}</p>
               </div>
             ))}
           </div>

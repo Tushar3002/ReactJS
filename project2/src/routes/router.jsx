@@ -26,6 +26,7 @@ import AdminUsersPage from "../pages/AdminUsersPage";
 import About from "../pages/Static/About";
 import Contact from "../pages/Static/Contact";
 import Privacy from "../pages/Static/Policy";
+import OrderDetail from "../pages/OrdersDetail";
 
 const router = createBrowserRouter([
   {
@@ -119,6 +120,7 @@ const router = createBrowserRouter([
         )
       },
       { path: "/orders", element: <MyOrders /> },
+      { path: "/orders/:id", element: <OrderDetail /> },
     ],
   },
 ]);
