@@ -1,18 +1,26 @@
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { clearCart } from "../features/cart/cartSlice";
 import { api, createOrder } from "../api/api";
 import { toast } from "react-toastify";
+import { useAuth } from "../auth/AuthContext";
 const Checkout = () => {
   const cartItems = useSelector((state) => state.cart);
   const navigate = useNavigate();
 
   const [address, setAddress] = useState("");
+  const [useSaved,setUseSaved]=useState(false)
   const [paymentMethod, setPaymentMethod] = useState("COD");
   const [loading, setLoading] = useState(false);
+  const {user} = useAuth()
 
+  console.log("ADDr",user);
+  
+
+  console.log("Address",user?.address);
+  
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0,
@@ -26,7 +34,7 @@ const Checkout = () => {
 
     if (!address.trim()) {
       toast.error("Please enter shipping address");
-      return; 
+      return;
     }
 
     try {
@@ -57,16 +65,38 @@ const Checkout = () => {
     }
   };
 
+  useEffect(()=>{
+    if(useSaved){
+      setAddress(user?.address||"")
+    }else{
+      setAddress("")
+    }
+  },[useSaved])
+
   return (
     <div className="max-w-4xl mx-auto p-6">
       <h1 className="text-2xl font-bold mb-4">Checkout</h1>
 
-      <input
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-        placeholder="Enter Address"
-        className="w-full border p-2 mb-4 rounded"
-      />
+      <div className="mb-4">
+        {/* Checkbox */}
+        <label className="flex items-center gap-2 mb-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={useSaved}
+            onChange={(e) => setUseSaved(e.target.checked)}
+          />
+          <span className="text-sm">Use saved address</span>
+        </label>
+
+        {/* Address Input */}
+        <input
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+          placeholder="Enter Address"
+          disabled={useSaved}
+          className="w-full border p-2 rounded disabled:bg-gray-100"
+        />
+      </div>
 
       <div className="bg-white p-4 rounded shadow">
         <h2 className="font-semibold mb-2">Order Summary</h2>
