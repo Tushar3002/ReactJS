@@ -69,6 +69,7 @@ const navigate = useNavigate();
         <input
           placeholder="Phone"
           name="phone"
+          maxLength={10}
           value={form.phone}
           onChange={handleChange}
           className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"

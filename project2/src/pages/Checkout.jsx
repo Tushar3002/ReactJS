@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { clearCart } from "../features/cart/cartSlice";
 import { api, createOrder } from "../api/api";
-
+import { toast } from "react-toastify";
 const Checkout = () => {
   const cartItems = useSelector((state) => state.cart);
   const navigate = useNavigate();
@@ -20,13 +20,13 @@ const Checkout = () => {
 
   const handlePlaceOrder = async () => {
     if (cartItems.length === 0) {
-      alert("Cart is empty");
+      toast.error("Cart is empty");
       return;
     }
 
     if (!address.trim()) {
-      alert("Please enter shipping address");
-      return;
+      toast.error("Please enter shipping address");
+      return; 
     }
 
     try {
@@ -42,7 +42,7 @@ const Checkout = () => {
         shippingAddress: address,
         paymentMethod,
       });
-
+      // toast.success("Order Placed Successfully.")
       navigate("/success", {
         state: {
           total,
@@ -51,7 +51,7 @@ const Checkout = () => {
       });
     } catch (err) {
       console.error(err);
-      alert("Order failed");
+      toast.error("Order failed");
     } finally {
       setLoading(false);
     }

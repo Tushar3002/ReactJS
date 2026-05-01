@@ -30,7 +30,7 @@ const MyOrders = () => {
     const singleProduct = async () => {
       try {
         const res = await getUser(user.id);
-        console.log(res.data);
+        console.log("NOW",res.data);
         setCurUser(res.data);
       } catch (err) {
         setError("Failed to load orders");

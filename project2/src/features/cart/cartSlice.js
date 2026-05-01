@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
+import { clearWishlist } from "./wishlistSlice";
 
 const initialState = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -40,7 +42,10 @@ const cartSlice = createSlice({
       }
     },
     clearCart: () => {
+
       localStorage.removeItem("cart");
+
+      
       return [];
     },
   },

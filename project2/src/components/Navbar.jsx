@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAuth } from "../auth/AuthContext";
+import { ShoppingCart } from "lucide-react";
 
 const Navbar = () => {
   const cartItems = useSelector((state) => state.cart);
@@ -21,22 +22,25 @@ const Navbar = () => {
 
         {role !== "admin" && (
           <>
-          <Link to="/cart" className="relative hover:text-gray-300">
-            Cart
-            <span className="ml-1 bg-red-500 text-xs px-2 py-0.5 rounded-full">
-              {cartItems.length}
-            </span>
-          </Link>
-          <Link to="/orders" className="relative hover:text-gray-300">
-            My Orders
-            
-          </Link>
-          <Link to="/wishlist" className="relative hover:text-gray-300">
-            WishList
-            
-          </Link>
+            <Link
+              to="/cart"
+              className="relative flex items-center hover:text-gray-300"
+            >
+              <ShoppingCart className="w-6 h-6" />
+
+              {cartItems.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">
+                  {cartItems.length}
+                </span>
+              )}
+            </Link>
+            <Link to="/orders" className="relative hover:text-gray-300">
+              My Orders
+            </Link>
+            <Link to="/wishlist" className="relative hover:text-gray-300">
+              WishList
+            </Link>
           </>
-          
         )}
 
         {role === "admin" && (
@@ -47,13 +51,18 @@ const Navbar = () => {
             <NavLink to="/admin/products" className="hover:text-gray-300">
               Products
             </NavLink>
-            <NavLink to="/admin/dashboard" className="hover:text-gray-300">Dashboard</NavLink>
-            <NavLink to="/admin/orders" className="hover:text-gray-300">Orders</NavLink>
-            <NavLink to="/admin/users" className="hover:text-gray-300">Users</NavLink>
+            <NavLink to="/admin/dashboard" className="hover:text-gray-300">
+              Dashboard
+            </NavLink>
+            <NavLink to="/admin/orders" className="hover:text-gray-300">
+              Orders
+            </NavLink>
+            <NavLink to="/admin/users" className="hover:text-gray-300">
+              Users
+            </NavLink>
           </>
         )}
 
- 
         {user ? (
           <button
             onClick={logout}

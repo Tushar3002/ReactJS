@@ -24,8 +24,11 @@ const ProductCard = ({ product, handleDelete }) => {
   const isWishListed = wishlist.some((item) => item.id === product.id);
 
   const toggleWishlist = async () => {
+    if (user?.role !== "user") return;
     try {
       if (isWishListed) {
+        console.log("ISWISH",isWishListed);
+        
         // remove
         await removeWish(product.id);
         dispatch(removeFromWishlist(product.id));

@@ -13,26 +13,37 @@ const AddProduct = () => {
     category: "",
   });
 
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
+
   const { user, loading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (loading) return;
 
-    if (!user) {
-      navigate("/login");
-    } else if (user.role !== "admin") {
-      navigate("/");
-    }
+    if (!user) navigate("/login");
+    else if (user.role !== "admin") navigate("/");
   }, [user, loading, navigate]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      setLoadingSubmit(true);
+
       await createProduct({
         ...form,
         price: Number(form.price),
+        stock: Number(form.stock),
       });
 
       setForm({
@@ -47,25 +58,24 @@ const AddProduct = () => {
       navigate("/");
     } catch (error) {
       console.error(error.response?.data || error.message);
+    } finally {
+      setLoadingSubmit(false);
     }
   };
 
   if (loading) return <p>Loading...</p>;
 
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
+
       <form
         onSubmit={handleSubmit}
         className="bg-white p-6 rounded-2xl shadow-lg w-full max-w-md space-y-4"
       >
-        <h2 className="text-2xl font-semibold text-center">Add Product</h2>
+
+        <h1 className="text-2xl font-bold text-center">
+          Add Product
+        </h1>
 
         <input
           name="name"
@@ -77,8 +87,18 @@ const AddProduct = () => {
 
         <input
           name="price"
+          type="number"
           placeholder="Price"
           value={form.price}
+          onChange={handleChange}
+          className="w-full p-2 border rounded-lg"
+        />
+
+        <input
+          name="stock"
+          type="number"
+          placeholder="Stock"
+          value={form.stock}
           onChange={handleChange}
           className="w-full p-2 border rounded-lg"
         />
@@ -98,37 +118,42 @@ const AddProduct = () => {
           onChange={handleChange}
           className="w-full p-2 border rounded-lg"
         />
-        <input
-          name="stock"
-          placeholder="STOCK"
-          value={form.stock}
-          onChange={handleChange}
-          className="w-full p-2 border rounded-lg"
-        />
-        {/* <input
-          name="category"
-          placeholder="CTEGORY"
-          value={form.category}
-          onChange={handleChange}
-          className="w-full p-2 border rounded-lg"
-        /> */}
 
         <select
-        name="category"
+          name="category"
           value={form.category}
           onChange={handleChange}
-          className="w-full border p-2 mb-4 rounded"
+          className="w-full border p-2 rounded"
         >
-          <option value="toy">TOY</option>
-          <option value="electronic">ELECTRONIC</option>
-          <option value="furniture">FURNITURE</option>
-          <option value="fashion">FASHION</option>
-          <option value="watch">WATCH</option>
+          <option value="">Select Category</option>
+          <option value="toy">Toy</option>
+          <option value="electronic">Electronic</option>
+          <option value="furniture">Furniture</option>
+          <option value="fashion">Fashion</option>
+          <option value="watch">Watch</option>
         </select>
 
-        <button className="w-full bg-blue-600 text-white py-2 rounded-lg">
-          Add Product
+        {/* Preview */}
+        {form.imageUrl && (
+          <div>
+            <p className="text-sm text-gray-500 mb-1">Preview:</p>
+            <img
+              src={form.imageUrl}
+              alt="preview"
+              className="w-32 h-32 object-cover border rounded"
+            />
+          </div>
+        )}
+
+        <button
+          disabled={loadingSubmit}
+          className={`w-full py-2 rounded-lg text-white ${
+            loadingSubmit ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"
+          }`}
+        >
+          {loadingSubmit ? "Adding..." : "Add Product"}
         </button>
+
       </form>
     </div>
   );
