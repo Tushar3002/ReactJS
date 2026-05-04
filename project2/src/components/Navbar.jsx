@@ -22,6 +22,13 @@ const Navbar = () => {
 
         {role !== "admin" && (
           <>
+            
+            <Link to="/orders" className="relative hover:text-gray-300">
+              My Orders
+            </Link>
+            <Link to="/wishlist" className="relative hover:text-gray-300">
+              WishList
+            </Link>
             <Link
               to="/cart"
               className="relative flex items-center hover:text-gray-300"
@@ -33,12 +40,6 @@ const Navbar = () => {
                   {cartItems.length}
                 </span>
               )}
-            </Link>
-            <Link to="/orders" className="relative hover:text-gray-300">
-              My Orders
-            </Link>
-            <Link to="/wishlist" className="relative hover:text-gray-300">
-              WishList
             </Link>
           </>
         )}

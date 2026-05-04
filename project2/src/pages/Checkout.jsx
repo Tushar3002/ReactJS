@@ -78,7 +78,6 @@ const Checkout = () => {
       <h1 className="text-2xl font-bold mb-4">Checkout</h1>
 
       <div className="mb-4">
-        {/* Checkbox */}
         <label className="flex items-center gap-2 mb-2 cursor-pointer">
           <input
             type="checkbox"

@@ -24,30 +24,33 @@ export const AuthProvider = ({ children }) => {
   //   setLoading(false);
   // }, []);
   useEffect(() => {
+  const fetchUser = async () => {
     const token = localStorage.getItem("token");
 
-    if (token) {
-      getUser()
-        .then((res) => {
-          setUser(res.data.data);
-          console.log("JANA", res.data);
-        })
-        .catch(() => {
-          localStorage.removeItem("token");
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    } else {
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const res = await getUser();
+      setUser(res.data.data);
+      console.log("JANA", res.data);
+    } catch (error) {
+      localStorage.removeItem("token");
+    } finally {
       setLoading(false);
     }
-  }, []);
+  };
+
+  fetchUser();
+}, []);
   const login = (data) => {
     localStorage.setItem("token", data.token);
     setUser(data.user);
 
-    dispatch(clearWishlist());
-    dispatch(clearCart());
+    // dispatch(clearWishlist());
+    // dispatch(clearCart());
   };
 
   const logout = () => {

@@ -3,33 +3,29 @@ import { loginUser } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 
-
-
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const navigate = useNavigate();
-const { login } = useAuth();
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const { login } = useAuth();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const res = await loginUser(form);
+  try {
+    const res = await loginUser(form);
 
-      localStorage.setItem("token", res.data.token);
-      login(res.data.data)
-      // alert("Login successful");
-      navigate("/");
-    } catch (err) {
-      // alert(err.response?.data?.message || "Login failed");
-        console.log(err.response.data);
-    }
-  };
-const handleChange = (e) => {
-  setForm({
-    ...form,
-    [e.target.name]: e.target.value,
-  });
+    login(res.data.data); // 
+
+    navigate("/");
+  } catch (err) {
+    console.log(err.response?.data);
+  }
 };
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <form
@@ -39,7 +35,7 @@ const handleChange = (e) => {
         <h2 className="text-2xl font-semibold text-center">Login</h2>
 
         <input
-        name="email"
+          name="email"
           placeholder="Email"
           value={form.email}
           onChange={handleChange}
@@ -47,7 +43,7 @@ const handleChange = (e) => {
         />
 
         <input
-        name="password"
+          name="password"
           placeholder="Password"
           type="password"
           value={form.password}

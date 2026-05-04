@@ -108,7 +108,7 @@ const Wishlist = () => {
                   >
                     {removingId === item.id ? "Removing..." : "❤️"}
                   </button>
-
+                    
                 </div>
               </div>
             );

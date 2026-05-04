@@ -49,7 +49,8 @@ const MyOrders = () => {
           {/* Header */}
           <div className="flex justify-between items-center mb-2">
             <h2 className="font-semibold text-lg">Order #{order.id}</h2>
-
+            <div>
+              <span className="text-sm">ORDER STATUS : </span>
             <span
               className={`text-sm font-medium ${
                 order.status === "delivered"
@@ -59,8 +60,9 @@ const MyOrders = () => {
                     : "text-gray-600"
               }`}
             >
-              {order.status}
+               {order.status}
             </span>
+            </div>
           </div>
 
           {/* Dates */}
@@ -74,7 +76,6 @@ const MyOrders = () => {
             </p>
           )}
 
-          {/* Info */}
           <div className="flex justify-between mt-2 text-sm">
             <p className="font-medium">
               Total: ₹ {order.totalPrice.toFixed(2)}
@@ -82,7 +83,7 @@ const MyOrders = () => {
             <p>Payment: {order.paymentMethod || "N/A"}</p>
           </div>
 
-          <div>
+          <div className="flex justify-between mt-2 text-sm">
             <Link
               to={`/orders/${order.id}`}
               state={{ order }}
@@ -90,6 +91,7 @@ const MyOrders = () => {
             >
               View Details
             </Link>
+            <p>Status: {order.paymentStatus || "N/A"}</p>
           </div>
 
           {/* Items */}

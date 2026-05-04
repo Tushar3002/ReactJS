@@ -63,7 +63,7 @@ const OrderDetail = () => {
   return (
     <div className="max-w-6xl mx-auto p-6 grid md:grid-cols-3 gap-6">
 
-      {/* LEFT: Order Details */}
+
       <div className="md:col-span-2 bg-white p-6 rounded-xl shadow">
 
         <h1 className="text-2xl font-bold mb-4">
@@ -91,7 +91,6 @@ const OrderDetail = () => {
           <p>Payment: {order.paymentMethod}</p>
         </div>
 
-        {/* Items */}
         <h2 className="font-semibold mb-2">Items</h2>
 
         <div className="space-y-3">
@@ -118,10 +117,9 @@ const OrderDetail = () => {
         </div>
       </div>
 
-      {/* RIGHT: User + Delivery Info */}
+      {/*  User + Delivery  */}
       <div className="bg-white p-6 rounded-xl shadow space-y-4 h-fit">
 
-        {/* Delivery */}
         <div>
           <h2 className="font-semibold mb-2">Delivery Info</h2>
           <p className="text-md text-gray-90000">
@@ -129,7 +127,6 @@ const OrderDetail = () => {
           </p>
         </div>
 
-        {/* User */}
         <div>
           <h2 className="font-semibold mb-2">User Info</h2>
 

@@ -25,7 +25,7 @@ const ProductCard = ({ product, handleDelete }) => {
 
   const toggleWishlist = async () => {
     if (user?.role !== "user") return;
-    try {
+    try { 
       if (isWishListed) {
         console.log("ISWISH",isWishListed);
         
